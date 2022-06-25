@@ -3,6 +3,11 @@
     path: "{{APP_LOCATION}}"
     state: absent
 
+- name: add app
+  ansible.builtin.file:
+    path: "{{APP_LOCATION}}"
+    state: directory
+
 - name: download & unzip the {{ COMPONENT }} content
   ansible.builtin.unarchive:
     src: https://github.com/roboshop-devops-project/{{ COMPONENT }}/archive/main.zip
@@ -12,5 +17,5 @@
 - name: copy {{ COMPONENT }} code to app location
   ansible.builtin.copy:
     src: /tmp/{{COMPONENT}}-main/
-    dest: "{{ APP_LOCATION }}"
+    dest: "{{ APP_LOCATION }}{{C}}"
     remote_src: yes
