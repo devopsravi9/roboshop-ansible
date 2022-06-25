@@ -1,5 +1,7 @@
 - name: run roboshop file
   hosts: "{{HOST}}"
+  become: yes
+  # we are getting this from privilegence escalation means becoming an root user for vedio 24/06 1.00hr
   roles:
     - "{{ROLE}}"
 
