@@ -1,6 +1,6 @@
 - name: run roboshop file
   hosts: "{{HOST}}"
   roles:
-    - "{{ROLE}}"
+    frontend
     -
 # i wrote a simple playbook to run any script. i pass host & role variable through command line to this playbook & thi swill run that particular in partucular host (server)
