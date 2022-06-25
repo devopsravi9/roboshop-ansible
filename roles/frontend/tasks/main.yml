@@ -4,4 +4,7 @@
       - nginx
     state: present
 
-
+- name: import common role for component download
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: download
