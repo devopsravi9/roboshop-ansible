@@ -1,0 +1,29 @@
+# instead downloading repo file we keep that in template and copying from there to task area
+- name: copy MONGODB yum repo file
+  ansible.builtin.template:
+    src: mongodb.repo
+    dest: /etc/yum.repos.d/mongodb.repo
+
+- name: install mongodb
+  ansible.builtin.yum:
+    name: mongodb-org
+    state: installed
+    # state installed, or present.
+
+- name: replace listen address in mongodb conf file.
+  ansible.builtin.replace:
+    path: /etc/mongod.conf
+    regexp: '127.0.0.1'
+    replace: '0.0.0.0'
+
+- name: start mongodb service
+  ansible.builtin.systemd:
+    name: mongod
+    enabled: yes
+    state: restarted
+
+- name: download & unzip the {{ COMPONENT }} content
+  ansible.builtin.unarchive:
+    src: https://github.com/roboshop-devops-project/mongodb/archive/main.zip
+    dest: /tmp
+    remote_src: yes
