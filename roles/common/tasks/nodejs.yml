@@ -13,5 +13,5 @@
 
 - name: install nodejs dependencies
   community.general.npm:
-    path: "{{ APP_LOCATION }}"
+    path: "{{APP_LOCATION}}"
 
