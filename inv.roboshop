@@ -5,7 +5,7 @@ cart.roboshop.internal
 [USER]
 user.roboshop.internal
 [CATALOGUE]
-100.26.149.166
+catalogue.roboshop.internal
 [SHIPPING]
 shipping.roboshop.internal
 [PAYMENT]
