@@ -1,11 +1,11 @@
 [FRONTEND]
-100.26.149.166
+frontend.roboshop.internal
 [CART]
 cart.roboshop.internal
 [USER]
 user.roboshop.internal
 [CATALOGUE]
-catalogue.roboshop.internal
+100.26.149.166
 [SHIPPING]
 shipping.roboshop.internal
 [PAYMENT]
