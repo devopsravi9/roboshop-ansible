@@ -1,0 +1,12 @@
+- name: setting YUM repo for nodejs
+  ansible.builtin.shell: https://rpm.nodesource.com/setup_lts.x | bash
+
+- name: install nodeJS
+  ansible.builtin.yum:
+    name: nodejs
+    status: installed
+
+- name: import common role for nodejs
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: download
