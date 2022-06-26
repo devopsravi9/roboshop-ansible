@@ -3,7 +3,7 @@
 
 - name: install nodeJS
   ansible.builtin.yum:
-    name: nodejs
+    name: npm
     state: installed
 
 - name: import common role for nodejs
@@ -14,3 +14,8 @@
 - name: Install npm Dependencies
   community.general.npm:
     path: "{{ APP_LOCATION }}"
+
+- name: setup {{ COMPONENT }} systemd service
+  ansible.builtin.template:
+    src: systemd.service
+    deast: /home/roboshop/${component}/systemd.service
