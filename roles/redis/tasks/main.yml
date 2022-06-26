@@ -1,7 +1,7 @@
 # instead of downloading repo file from url, i am keeping rep file locally by copying it from github
 
-- name: copy redis repo file
-  ansible.builtin.copy:
+- name: copy redis YUM repo file
+  ansible.builtin.template:
     src: redis.repo
     dest: /etc/yum.repos.d/redis.repo
 
