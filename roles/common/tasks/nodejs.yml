@@ -15,7 +15,7 @@
   community.general.npm:
     path: "{{ APP_LOCATION }}"
 
-- name: setup {{ COMPONENT }} systemd service
-  ansible.builtin.template:
-    src: systemd.service
-    deast: /home/roboshop/${component}/systemd.service
+- name: import systemd setup for {{ COMPONENT }}
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: systemd
