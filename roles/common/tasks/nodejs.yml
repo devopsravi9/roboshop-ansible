@@ -4,7 +4,7 @@
 - name: install nodeJS
   ansible.builtin.yum:
     name: nodejs
-    status: installed
+    state: installed
 
 - name: import common role for nodejs
   ansible.builtin.include_role:
