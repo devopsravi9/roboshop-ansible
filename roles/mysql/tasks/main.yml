@@ -4,7 +4,7 @@
   when: MYSQL_PASSWORD is undefined
 
 - name: copy mysql YUM repo file
-  ansible.builtin.copy:
+  ansible.builtin.template:
     src: mysql.repo
     dest: /etc/yum.repos.d/{{COMPONENT}}.repo
 
