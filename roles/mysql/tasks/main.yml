@@ -68,6 +68,6 @@
     login_password: "{{MYSQL_PASSWORD}}"
 
 - name: print a line
-  debug:
+  ansible.builtin.set_fact:
     msg: {{ '/var/log/mysqld.log' | regex_search('.*temporary password.*') }}
 
