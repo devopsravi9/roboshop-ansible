@@ -21,7 +21,7 @@
 
 - name: get a temporary password
   ansible.builtin.shell: grep 'temporary password' /var/log/mysqld.log
-    register: PASSWORD
+  register: PASSWORD
 
 - name: print the output
   debug:
