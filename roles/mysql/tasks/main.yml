@@ -25,7 +25,7 @@
 
 - name: print the output
   debug:
-    msg: "{{PASSWORD}}"
+    msg: "{{PASSWORD.stdout}}"
 
 
 
