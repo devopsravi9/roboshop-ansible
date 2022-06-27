@@ -1,0 +1,23 @@
+- name: fail if password MYSQL_PASSWORD doesnot exist
+  ansible.builtin.fail:
+    msg: MYSQL_PASSWORD variable is missing
+  when: MYSQL_PASSWORD is undefined
+
+- name: copy mysql YUM repo file
+  ansible.builtin.copy:
+    src: mysql.repo
+    dest: /etc/yum.repos.d/{{COMPONENT}}.repo
+
+- name: install mysql
+  ansible.builtin.yum:
+    name: mysql-community-server
+    state: installed
+
+- name: Start MySQL Service
+  ansible.builtin.systemd:
+    name: mysqld
+    state: started
+    enabled: yes
+
+
+
