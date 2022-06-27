@@ -31,6 +31,7 @@
 - name: Fetch Password from MySQL LOG File
   ansible.builtin.set_fact:
     DEFAULT_PASSWORD: "{{mysql_log['content'] | b64decode | regex_findall('.*temporary password.*') | join(' ')| split(' ') | last}}"
+# too check user & password we use gather mysqll data module. here we try to fetch version of mysql by giving user name and password if we already set password we get response of version otherwise not means we have reset the password
 
 - name: Check MySQL Password has been reset or not
   community.mysql.mysql_info:
