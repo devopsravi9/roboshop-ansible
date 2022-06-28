@@ -19,3 +19,17 @@
 - name: check useer details
   debug:
     msg: "{{ APP_USER }}"
+
+- name: Ensure SELinux is set to enforcing mode
+  ansible.builtin.lineinfile:
+    path: /home/roboshop/payment/payment.ini
+    regexp: '^{{item.name}}'
+    line: "{{item.line}}"
+  loop:
+  - {name: 'uid', line: "uid = {{APP_USER.uid}}" }
+  - {name: 'gid', line: "gid = {{APP_USER.group}}" }
+
+- name: import systemd setup for {{ COMPONENT }}
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: systemd.yml
