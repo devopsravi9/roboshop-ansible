@@ -1,5 +1,6 @@
 - name: install frontend
   hosts: FRONTEND
+  become: yes
   roles:
     - frontend
   vars:
