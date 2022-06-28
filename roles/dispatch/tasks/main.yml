@@ -10,6 +10,10 @@
     name: common
     tasks_from: download
 
+- name: setting up go
+  ansible.builtin.shell: su roboshop && go mod init dispatch && go get &&  go build
+
+
 - name: import systemd setup for {{ COMPONENT }}
   ansible.builtin.include_role:
     name: common
