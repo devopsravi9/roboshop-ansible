@@ -1,0 +1,21 @@
+- name: install pythom
+  ansible.builtin.yum:
+    name:
+      - python36
+      - gcc
+      - python3-devel
+    state: installed
+
+- name: import app common setup configuration
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: download
+
+- name: Install specified python requirements
+  ansible.builtin.pip:
+    requirements: /home/roboshop/{{ COMPONENT }}/requirements.txt
+    executable: pip3
+
+- name: check useer details
+    debug:
+      msg: "{{ APP_USER }}"

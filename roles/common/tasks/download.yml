@@ -1,6 +1,7 @@
 - name: create appilication user
   ansible.builtin.user:
     name: roboshop
+  register: APP_USER
 
 - name: remove app code
   ansible.builtin.file:
