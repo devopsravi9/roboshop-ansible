@@ -9,9 +9,16 @@
 - name: intall erlang & rabbitmq
   ansible.builtin.yum:
     name:
-      - https://github.com/rabbitmq/erlang-rpm/releases/download/v23.2.6/erlang-23.2.6-1.el7.x86_64.rpm
-      - rabbitmq-server
+    - https://github.com/rabbitmq/erlang-rpm/releases/download/v23.2.6/erlang-23.2.6-1.el7.x86_64.rpm
+    - rabbitmq-server
     state: installed
+
+#- name: Install Erlang & RabbitMQ
+ # ansible.builtin.yum:
+  #  name:
+   # - https://github.com/rabbitmq/erlang-rpm/releases/download/v23.2.6/erlang-23.2.6-1.el7.x86_64.rpm
+    #- rabbitmq-server
+    #state: installed
 
 - name: start rabbitmq server
   ansible.builtin.systemd:
