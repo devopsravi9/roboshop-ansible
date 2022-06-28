@@ -1,0 +1,9 @@
+- name: install go lang
+  ansible.builtin.yum:
+    name: golang
+    state: installed
+
+- name: call common role
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: download
