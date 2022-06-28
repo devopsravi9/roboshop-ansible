@@ -17,5 +17,5 @@
     executable: pip3
 
 - name: check useer details
-    debug:
-      msg: "{{ APP_USER }}"
+  debug:
+    msg: "{{ APP_USER }}"
