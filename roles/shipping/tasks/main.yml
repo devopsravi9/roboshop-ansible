@@ -9,7 +9,9 @@
     tasks_from: download
 
 - name: changes in maven
-  ansible.builtin.shell: cd /home/roboshop/{{COMPONENT}} && mvn clean package  && mv target/{{COMPONENT}}-1.0.jar {{COMPONENT}}.jar
+  ansible.builtin.shell: mvn clean package  && mv target/{{COMPONENT}}-1.0.jar {{COMPONENT}}.jar
+  args:
+    chdir: /home/roboshop/{{COMPONENT}}
 
 - name: systemd setup for {{ COMPONENT }}
   ansible.builtin.include_role:
