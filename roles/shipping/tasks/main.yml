@@ -1,0 +1,18 @@
+- name: install maven YUM module
+  ansible.builtin.yum:
+    name: maven
+    state: installed
+
+- name: import common app setup configuration
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: download
+
+- name: changes in maven
+  ansible.builtin.shell: mvn clean package  && mv target/{{component}}-1.0.jar {{component}}.jar
+
+- name: systemd setup for {{ COMPONENT }}
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: systemd
+
