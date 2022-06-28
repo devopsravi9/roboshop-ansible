@@ -3,15 +3,8 @@
     msg: RABBITMQ_USER_PASSWORD variable is missing.
   when: RABBITMQ_USER_PASSWORD is undefined
 
-- name: setup rabbitmq repos
-  ansible.builtin.shell: https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | sudo bash
-
-#- name: intall erlang & rabbitmq
-  #ansible.builtin.yum:
-    #name:
-    #- https://github.com/rabbitmq/erlang-rpm/releases/download/v23.2.6/erlang-23.2.6-1.el7.x86_64.rpm
-    # rabbitmq-server
-    #state: installed
+- name: Setup RabbitMQ repos
+  ansible.builtin.shell: curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | sudo bash
 
 - name: Install Erlang & RabbitMQ
   ansible.builtin.yum:
@@ -20,20 +13,19 @@
     - rabbitmq-server
     state: installed
 
-- name: start rabbitmq server
+- name: Start RabbitMQ Service
   ansible.builtin.systemd:
     name: rabbitmq-server
     state: started
     enabled: yes
 
-- name: add roboshop app user to rabbitmq
+- name: Create RoboShop App User in RabbitMQ
   community.rabbitmq.rabbitmq_user:
     user: roboshop
-    password: "{{ RABBITMQ_USER_PASSWORD }}"
+    password: "{{RABBITMQ_USER_PASSWORD}}"
     vhost: /
     configure_priv: .*
     read_priv: .*
     write_priv: .*
     state: present
     tags: administrator
-
