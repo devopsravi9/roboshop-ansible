@@ -21,4 +21,4 @@ redis.roboshop.internal
 [RABBITMQ]
 rabbitmq.roboshop.internal
 [DISPATCH]
-dispatch.roboshop.interna
+dispatch.roboshop.internal
