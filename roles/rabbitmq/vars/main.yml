@@ -1,3 +1,4 @@
 COMPONENT: rabbitmq
 APP_LOCATION: /home/roboshop/rabbitmq
 SUFFIX: /
+RABBITMQ_USER_PASSWORD: "{{ lookup('amazon.aws.aws_secret', 'DbSecret') }}"
