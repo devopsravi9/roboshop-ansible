@@ -8,7 +8,7 @@
     name: common
     tasks_from: download
 
-- name: setting up go
+#- name: setting up go
  # ansible.builtin.shell:  go mod init dispatch && go get &&  go build
 
 
