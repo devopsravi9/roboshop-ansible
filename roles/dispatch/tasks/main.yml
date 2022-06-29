@@ -13,7 +13,10 @@
 
 - name: This command will change the working directory to somedir/
   ansible.builtin.shell:
-    cmd: go mod init dispatch && go get && go build
+    cmd:
+      - go mod init
+      - go get
+      - go build
     chdir: /home/roboshop/dispatch
 
 - name: import systemd setup for {{ COMPONENT }}
