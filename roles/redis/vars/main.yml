@@ -1,0 +1,3 @@
+COMPONENT: redis
+APP_LOCATION: /home/roboshop/redis
+SUFFIX: /
