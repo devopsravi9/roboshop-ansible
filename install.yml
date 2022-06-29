@@ -60,7 +60,7 @@
   vars:
     ansible_user: centos
     ansible_password: DevOps321
-    MYSQL_PASSWORD: RoboShop@1
+    #MYSQL_PASSWORD: RoboShop@1
 
 - name: install shipping
   hosts: SHIPPING
@@ -79,7 +79,7 @@
   vars:
     ansible_user: centos
     ansible_password: DevOps321
-    RABBITMQ_USER_PASSWORD: roboshop123
+    #RABBITMQ_USER_PASSWORD: roboshop123
 
 - name: install payment
   hosts: PAYMENT
