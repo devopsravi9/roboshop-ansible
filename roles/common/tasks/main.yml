@@ -8,6 +8,3 @@
       - botocore
     executable: pip3
 
-- name: print passwords
-  debug:
-    msg: "{{SECRETS}}"
