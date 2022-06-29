@@ -20,3 +20,5 @@ mongodb.roboshop.internal
 redis.roboshop.internal
 [RABBITMQ]
 rabbitmq.roboshop.internal
+[DISPATCH]
+172.31.2.86

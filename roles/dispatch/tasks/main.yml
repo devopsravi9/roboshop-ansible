@@ -1,5 +1,3 @@
-
-
 - name: install go lang
   ansible.builtin.yum:
     name: golang

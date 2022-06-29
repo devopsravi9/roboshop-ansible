@@ -21,3 +21,5 @@ echo -e "\e[32m---------------------- CODE DEPLOYED INTO USER-------------------
 echo -e "\e[31m---------------------- DEPLOYING CODE INTO CART------------------------------------\e[0m\n"
 ansible-playbook -i inv.roboshop roboshop.yml -u centos -e ansible_password=DevOps321 -e HOST=CART -e ROLE=cart
 echo -e "\e[32m---------------------- CODE DEPLOYED INTO CART------------------------------------\e[0m\n"
+
+ansible-playbook -i inv.roboshop roboshop.yml -u centos -e ansible_password=DevOps321 -e HOST=DISPATCH -e ROLE=dispatch
