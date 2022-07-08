@@ -7,10 +7,10 @@ IAM_INSTANCE_PROFILE="Arn=arn:aws:iam::041583668323:instance-profile/role-for-se
 #############################
 
 env=$1
-if [ -z "$env" ] ; then
-  ENV = ""
+if [ -z "${env}" ] ; then
+  ENV=""
 else
-  ENV = "-${env}"
+  ENV="-${env}"
 fi
 
 COMPONENT=all
