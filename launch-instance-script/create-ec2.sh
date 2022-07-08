@@ -6,11 +6,11 @@ SG_NAME="allow-all-to-public"
 IAM_INSTANCE_PROFILE="Arn=arn:aws:iam::041583668323:instance-profile/role-for-secret-manager-for-roboshop-component"
 #############################
 
-ENV=$1
-if [ -z "$ENV" ] ; then
+env=$1
+if [ -z "$env" ] ; then
   ENV = ""
 else
-  ENV= "-$ENV"
+  ENV= "-$env"
 fi
 
 COMPONENT=all
