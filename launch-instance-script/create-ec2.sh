@@ -10,7 +10,7 @@ env=$1
 if [ -z "$env" ] ; then
   ENV = ""
 else
-  ENV= "-$env"
+  ENV = "-${env}"
 fi
 
 COMPONENT=all
