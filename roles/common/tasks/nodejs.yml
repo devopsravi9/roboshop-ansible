@@ -11,10 +11,11 @@
     name: common
     tasks_from: download
 
-- name: Install npm Dependencies
-  community.general.npm:
-    path: "{{ APP_LOCATION }}"
-
+# this step is done from CI pipeline
+# - name: Install npm Dependencies
+#   community.general.npm:
+#     path: "{{ APP_LOCATION }}"
+#
 - name: import systemd setup for {{ COMPONENT }}
   ansible.builtin.include_role:
     name: common
