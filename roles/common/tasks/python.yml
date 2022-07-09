@@ -1,4 +1,4 @@
-- name: install pythom
+- name: install python
   ansible.builtin.yum:
     name:
       - python36
