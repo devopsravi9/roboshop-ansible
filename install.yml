@@ -90,15 +90,15 @@
     ansible_user: centos
     ansible_password: DevOps321
 
-- name: install dispatch
-  hosts: DISPATCH
-  become: yes
-  roles:
-  - dispatch
-  vars:
-    ansible_user: centos
-    ansible_password: DevOps321
-
+#- name: install dispatch
+#  hosts: DISPATCH
+#  become: yes
+#  roles:
+#  - dispatch
+#  vars:
+#    ansible_user: centos
+#    ansible_password: DevOps321
+#
 
 
 
