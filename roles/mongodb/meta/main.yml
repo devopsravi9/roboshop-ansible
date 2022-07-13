@@ -2,4 +2,4 @@ dependencies :
   - role: common
   - role : prometheus
     vars :
-      SETUP_TYPE : client
+      SETUP_TYPE: client
