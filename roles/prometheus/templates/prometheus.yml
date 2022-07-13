@@ -10,8 +10,8 @@ alerting:
     - targets:
       # - alertmanager:9093
 
-rule_files:
-  - alerts.yml
+#rule_files:
+ # - alerts.yml
 # - "second_rules.yml"
 
 scrape_configs:
