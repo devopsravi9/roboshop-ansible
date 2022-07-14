@@ -18,5 +18,5 @@ groups:
       severity : critical
     annotations : {% raw %}
       summary : "ServiceDown  - [{{ $labels.exported_name}}]"
-      description : "ServiceDown  - [{{ $labels.exported_name}}]" {% endraw %}
+      description : "ServiceDown  - [{{ $labels.exported_name}}]"{% endraw %}
 {% endfor %}
