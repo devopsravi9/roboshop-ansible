@@ -8,10 +8,22 @@
     src: alerts.yml
     dest: /opt/prometheus/alerts.yml
 
+- name: restart prometheus
+  ansible.builtin.systemd:
+    name: prometheus
+    state: restarted
+
+- name: check for prometheus activity
+  ansible.builtin.wait_for:
+    host: 0.0.0.0
+    port: 9090
+    delay: 10
+    timeout: 15
+
 - name: prometheus alerts manager configuration
   ansible.builtin.template:
     src: alertmanager.yml
-    dest: /opt/prometheus/alertmanager.yml
+    dest: /opt/alertmanager/alertmanager.yml
 
 - name: restart alertmanager
   ansible.builtin.systemd:
@@ -25,15 +37,4 @@
     delay: 10
     timeout: 15
 
-#- name: restart prometheus
-#  ansible.builtin.systemd:
-#    name: prometheus
-#    state: restarted
-#
-#- name: check for prometheus activity
-#  ansible.builtin.wait_for:
-#    host: 0.0.0.0
-#    port: 9090
-#    delay: 10
-#    timeout: 15
-#
+
