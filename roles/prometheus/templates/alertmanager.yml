@@ -10,8 +10,8 @@ receivers:
       - to: "mamidi1350@gmail.com"
         from: "mamidi1350@gmail.com"  
         smarthost: "email-smtp.us-east-1.amazonaws.com:587"
-        auth_username: "${ACCESS_KEY}"
-        auth_password: "${SECRET_KEY}"
+        auth_username: "{{ACCESS_KEY}}"
+        auth_password: "{{SECRET_KEY}}"
         require_tls: true
 #receivers:
 #  - name: 'web.hook'
