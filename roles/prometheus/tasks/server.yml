@@ -23,7 +23,7 @@
 - name: prometheus alerts manager configuration
   ansible.builtin.template:
     src: alertmanager.yml
-    dest: /opt/alertmanager/alertmanager
+    dest: /opt/alertmanager/alertmanager.yml
 
 - name: restart alertmanager
   ansible.builtin.systemd:
