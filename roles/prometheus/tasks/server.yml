@@ -13,17 +13,17 @@
     src: alertmanager.yml
     dest: /opt/prometheus/alertmanager.yml
 
-- name: restart prometheus
+- name: restart alertmanager
   ansible.builtin.systemd:
     name: alertmanager
     state: restarted
 
-- name: check for prometheus activity
+- name: check for alert manager activity
   ansible.builtin.wait_for:
     host: 0.0.0.0
     port: 9093
     delay: 10
-    timeout: 10
+    timeout: 15
 
 #- name: restart prometheus
 #  ansible.builtin.systemd:
