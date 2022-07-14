@@ -23,7 +23,7 @@
     host: 0.0.0.0
     port: 9093
     delay: 10
-    timeout: 15
+    timeout: 10
 
 #- name: restart prometheus
 #  ansible.builtin.systemd:
