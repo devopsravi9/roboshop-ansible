@@ -1,0 +1,1 @@
+component: [ "frontend", "cart", "catalogue", "user", "shipping", "payment" ]
