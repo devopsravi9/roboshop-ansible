@@ -13,10 +13,6 @@ receivers:
         auth_username: "{{ACCESS_KEY}}"
         auth_password: "{{SECRET_KEY}}"
         require_tls: true
-#receivers:
-#  - name: 'web.hook'
-#    webhook_configs:
-#      - url: 'http://127.0.0.1:5001/'
 inhibit_rules:
   - source_match:
     severity: 'critical'
