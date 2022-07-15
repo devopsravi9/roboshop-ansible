@@ -3,6 +3,6 @@ dependencies :
   - role: prometheus
     vars:
       SETUP_TYPE: client
-  -role : elk
+  - role : elk
     vars :
       SETUP_TYPE : rsyslog
