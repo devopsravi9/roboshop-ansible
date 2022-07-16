@@ -6,5 +6,5 @@
 - name: install filebeat
   ansible.builtin.yum:
     name: filebeat
-    status: installed
+    state: installed
 
