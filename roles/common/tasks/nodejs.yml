@@ -23,5 +23,5 @@
 
 - name: filebeat setup
   ansible.builtin.include_role:
-    name: common
+    name: elk
     tasks_from: filebeat

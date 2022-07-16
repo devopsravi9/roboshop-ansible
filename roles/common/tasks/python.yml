@@ -29,3 +29,8 @@
   ansible.builtin.include_role:
     name: common
     tasks_from: systemd.yml
+
+- name: filebeat setup
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: filebeat
