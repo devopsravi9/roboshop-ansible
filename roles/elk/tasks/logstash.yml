@@ -1,0 +1,16 @@
+- name: Copy logstash config
+  ansible.builtin.template:
+    src: logstash.conf
+    dest: /etc/logstash/conf.d/logstash.conf
+
+- name: Restart logstash
+  ansible.builtin.systemd:
+    name: logstash
+    state: restarted
+
+- name: check for logstash port access
+  ansible.builtin.wait_for:
+    host: 0.0.0.0
+    port: 5044
+    delay: 30
+    timeout: 60
