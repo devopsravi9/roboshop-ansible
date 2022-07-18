@@ -19,9 +19,13 @@
     src: nginx.conf
     dest: /etc/nginx/nginx.conf
 
-
 - name: start nginx service
   ansible.builtin.systemd:
     name: nginx
     state: restarted
     enabled: yes
+
+- name: filebeat setup
+  ansible.builtin.include_role:
+    name: elk
+    tasks_from: filebeat
