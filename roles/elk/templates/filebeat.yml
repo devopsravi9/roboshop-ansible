@@ -21,7 +21,7 @@ filebeat.inputs:
   include_lines: ['^\[2']
 {% endif %}
 
-{% if COMPONENT == "payment" %}
+{% if COMPONENT == "frontend" %}
   exclude_lines: ['*ratings*']
 {% endif %}
 
