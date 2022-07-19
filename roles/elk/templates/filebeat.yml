@@ -17,7 +17,7 @@ filebeat.inputs:
   multiline.match: after
 {% endif %}
 
-{% if COMPONENT == "shipping" %}
+{% if COMPONENT == "payment" %}
   include_lines: ['^\[2']
 {% endif %}
 
