@@ -11,10 +11,10 @@ filebeat.inputs:
     component: {{COMPONENT}}
 
 {% if COMPONENT == "shipping" %}
-multiline.type: pattern
-multiline.pattern: '^2'
-multiline.negate: true
-multiline.match: after
+  multiline.type: pattern
+  multiline.pattern: '^2'
+  multiline.negate: true
+  multiline.match: after
 {% endif %}
 
 
