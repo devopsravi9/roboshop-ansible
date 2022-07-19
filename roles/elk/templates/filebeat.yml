@@ -8,6 +8,13 @@ filebeat.inputs:
     env: {{ENV}}
     component: {{COMPONENT}}
 
+{% if LOG_TYPE == "shipping" %}
+multiline.type: pattern
+multiline.pattern: '^2'
+multiline.negate: true
+multiline.match: after
+{% endif %}
+
 
 {% if LOG_TYPE == "json" %}
 output.elasticsearch :
