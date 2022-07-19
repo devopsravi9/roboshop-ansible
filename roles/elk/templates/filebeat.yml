@@ -18,7 +18,7 @@ filebeat.inputs:
 {% endif %}
 
 {% if COMPONENT == "shipping" %}
-  include_lines: ['^[2']
+  include_lines: ['^\[2']
 {% endif %}
 
 {% if LOG_TYPE == "json" %}
