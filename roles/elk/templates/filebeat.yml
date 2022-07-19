@@ -1,7 +1,9 @@
 filebeat.inputs:
 - type: log
   enabled: true
+{% if COMPONENT == "shipping" %}
   json.keys_under_root: true
+{% endif %}
   paths:
     - "{{LOG_FILE}}"
   fields:
