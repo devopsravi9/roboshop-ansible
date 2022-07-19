@@ -17,6 +17,9 @@ filebeat.inputs:
   multiline.match: after
 {% endif %}
 
+{% if COMPONENT == "shipping" %}
+  include_lines: ['^[2']
+{% endif %}
 
 {% if LOG_TYPE == "json" %}
 output.elasticsearch :
