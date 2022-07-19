@@ -1,3 +1,5 @@
 COMPONENT: payment
 APP_LOCATION: /home/roboshop/payment
 SUFFIX: /
+LOG_TYPE: raw
+LOG_FILE: /var/log/payment.log
