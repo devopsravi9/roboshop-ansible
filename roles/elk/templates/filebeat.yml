@@ -8,7 +8,7 @@ filebeat.inputs:
     env: {{ENV}}
     component: {{COMPONENT}}
 
-{% if LOG_TYPE == "shipping" %}
+{% if component == "shipping" %}
 multiline.type: pattern
 multiline.pattern: '^2'
 multiline.negate: true
