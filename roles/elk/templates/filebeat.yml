@@ -21,6 +21,10 @@ filebeat.inputs:
   include_lines: ['^\[2']
 {% endif %}
 
+{% if COMPONENT == "payment" %}
+  exclude_lines: ['*ratings*']
+{% endif %}
+
 {% if LOG_TYPE == "json" %}
 output.elasticsearch :
   index : "{{COMPONENT}}-%{+yyyy.MM.dd}"
