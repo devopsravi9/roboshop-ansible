@@ -1,5 +1,6 @@
 [SAMPLE]
-172.31.11.7
+//172.31.11.7
+172.31.8.160
 
 [FRONTEND]
 frontend-dev.roboshop.internal
