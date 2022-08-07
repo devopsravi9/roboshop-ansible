@@ -23,7 +23,7 @@
     mode: '0400'
     owner: roboshop
     group: roboshop
-  when: DOCDB_ENDPOINT != "null
+  when: DOCDB_ENDPOINT != "null"
 
 - name: import systemd setup for {{ COMPONENT }}
   ansible.builtin.include_role:
