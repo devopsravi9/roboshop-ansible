@@ -15,7 +15,16 @@
 # - name: Install npm Dependencies
 #   community.general.npm:
 #     path: "{{ APP_LOCATION }}"
-#
+
+- name: download DOCDB pem file
+  ansible.builtin.get_url:
+    url: https://s3.amazonaws.com/rds-downloads/rds-combined-ca-bundle.pem
+    dest: /home/roboshop/catalogue/rds-combined-ca-bundle.pem
+    mode: '0400'
+    owner: roboshop
+    group: roboshop
+  when: DOCDB_ENDPOINT != "null
+
 - name: import systemd setup for {{ COMPONENT }}
   ansible.builtin.include_role:
     name: common
