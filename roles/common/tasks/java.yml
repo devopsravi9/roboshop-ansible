@@ -14,6 +14,10 @@
 #   args:
 #     chdir: /home/roboshop/{{COMPONENT}}
 
+- name: calculate memory
+  ansible.builtin.shell: echo "{{ansible_memtotal_mb}} * 0.8" | bc | awk -F . '{print $1}'
+  register: mem
+
 - name: systemd setup for {{ COMPONENT }}
   ansible.builtin.include_role:
     name: common
