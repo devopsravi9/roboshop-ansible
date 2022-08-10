@@ -3,9 +3,10 @@
     src: systemd.service
     dest: /etc/systemd/system/{{ COMPONENT }}.service
 
-- name: start {{ COMPONENT }} service
-  ansible.builtin.systemd:
-    name: "{{ COMPONENT }}"
-    enabled: yes
-    state: restarted
-    daemon_reload: yes
+#not required for immutable
+#- name: start {{ COMPONENT }} service
+#  ansible.builtin.systemd:
+#    name: "{{ COMPONENT }}"
+#    enabled: yes
+#    state: restarted
+#    daemon_reload: yes
