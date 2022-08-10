@@ -25,23 +25,29 @@
 #     dest: "{{ APP_LOCATION }}"
 #     remote_src: yes
 
-- name: get latest version of appilication from nexus
-  ansible.builtin.shell: curl http://nexus.roboshop.internal:8081/service/rest/repository/browse/{{ COMPONENT }}/ | grep zip | grep "{{ENV}}-{{COMPONENT}}" | sed -e 's/"/ /g' | xargs -n1 | grep ^http | tail -n1
-  register: out
-  when: APP_VERSION is not defined
+#- name: get latest version of appilication from nexus
+#  ansible.builtin.shell: curl http://nexus.roboshop.internal:8081/service/rest/repository/browse/{{ COMPONENT }}/ | grep zip | grep "{{ENV}}-{{COMPONENT}}" | sed -e 's/"/ /g' | xargs -n1 | grep ^http | tail -n1
+#  register: out
+#  when: APP_VERSION is not defined
+#
+#- name: declare URL fact of latest version
+#  ansible.builtin.set_fact:
+#    URL: "{{ out.stdout }}"
+#  when:  APP_VERSION is not defined
+#
+#- name: declare URL fact
+#  ansible.builtin.set_fact:
+#    URL: http://nexus.roboshop.internal:8081/repository/{{ COMPONENT }}/{{ENV}}-{{COMPONENT}}-{{APP_VERSION}}.zip
+#  when: APP_VERSION is defined
+#
+#- name: download & unzip the {{ COMPONENT }} content from Nexus
+#  ansible.builtin.unarchive:
+#    src: "{{ URL }}"
+#    dest: "{{ APP_LOCATION }}"
+#    remote_src: yes
 
-- name: declare URL fact of latest version
-  ansible.builtin.set_fact:
-    URL: "{{ out.stdout }}"
-  when:  APP_VERSION is not defined
-
-- name: declare URL fact
-  ansible.builtin.set_fact:
-    URL: http://nexus.roboshop.internal:8081/repository/{{ COMPONENT }}/{{ENV}}-{{COMPONENT}}-{{APP_VERSION}}.zip
-  when: APP_VERSION is defined
-
-- name: download & unzip the {{ COMPONENT }} content from Nexus
+- name: download & unzip the {{ COMPONENT }} content from local
   ansible.builtin.unarchive:
-    src: "{{ URL }}"
+    src: "/tmp/{{ COMPONENT }}.zip"
     dest: "{{ APP_LOCATION }}"
     remote_src: yes
