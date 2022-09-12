@@ -32,7 +32,7 @@
 
 - name: start frontend service
   ansible.builtin.systemd:
-    name: frontend
+    name: nginx
     state: started
     enabled: yes
     daemon_reload: yes
