@@ -1,10 +1,10 @@
 - name: download {{ COMPONENT }} repo file
   ansible.builtin.shell: https://rpm.nodesource.com/setup_lts.x | bash
 
-- name: installing nodejs
+- name: Install the nodejs
   ansible.builtin.yum:
-    - nodejs
-  state: installed
+    name: nodejs
+    state: installed
 
 - name: Add the user 'roboshop'
   ansible.builtin.user:
