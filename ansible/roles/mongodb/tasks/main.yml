@@ -27,7 +27,7 @@
 #   CHECKSTAT $?
 #
 #
-  - name: installing mongodb
+- name: installing mongodb
   ansible.builtin.yum:
     name:
       - https://raw.githubusercontent.com/roboshop-devops-project/mongodb/main/mongo.repo
