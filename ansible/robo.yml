@@ -1,0 +1,4 @@
+- name: run ansible playbook
+  hosts: "{{ HOSTS }}"
+  roles: "{{ ROLES }}"
+  become: yes

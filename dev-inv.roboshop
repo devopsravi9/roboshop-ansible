@@ -1,6 +1,3 @@
-[SAMPLE]
-172.31.4.150
-
 [FRONTEND]
 frontend-dev.roboshop.internal
 [CART]
