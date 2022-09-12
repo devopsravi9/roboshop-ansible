@@ -1,0 +1,51 @@
+# RINT "setting mongo repo file"
+#   curl -s -o /etc/yum.repos.d/mongodb.repo https://raw.githubusercontent.com/roboshop-devops-project/mongodb/main/mongo.repo &>> $LOG
+#   CHECKSTAT $?
+#
+#   PRINT "installing mongod"
+#   yum install -y mongodb-org &>> $LOG
+#   CHECKSTAT $?
+#
+#   PRINT "updating listen ip address"
+#   sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf &>> $LOG
+#   CHECKSTAT $?
+#
+#   PRINT "enable & start mongod"
+#   systemctl enable mongod &>> $LOG && systemctl start mongod &>> $LOG
+#   CHECKSTAT $?
+#
+#   PRINT "download mongod schema files"
+#   curl -s -L -o /tmp/mongodb.zip "https://github.com/roboshop-devops-project/mongodb/archive/main.zip" &>> $LOG
+#   CHECKSTAT $?
+#
+#   PRINT "organizing mongod schema files"
+#   cd /tmp && unzip -o mongodb.zip  &>> $LOG && cd mongodb-main
+#   CHECKSTAT $?
+#
+#   PRINT "load catlogue & users schema file to mongod"
+#   mongo < catalogue.js &>> $LOG &&  mongo < users.js &>> $LOG
+#   CHECKSTAT $?
+#
+#
+  - name: installing mongodb
+  ansible.builtin.yum:
+    name:
+      - https://raw.githubusercontent.com/roboshop-devops-project/mongodb/main/mongo.repo
+    state: installed
+
+- name: start mongod service
+  ansible.builtin.systemd:
+    name: mongod
+    state: restarted
+    enabled: yes
+
+- name: take a download role
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: download
+
+
+
+
+
+
