@@ -56,8 +56,8 @@
 
 - name: organizing the content
   ansible.builtin.copy:
-    src: /tmp/{{ COMPONENT }}.zip/static/*
-    dest: /usr/share/nginx/html
+    src: /tmp/{{ COMPONENT }}.zip/static/
+    dest: /usr/share/nginx/html/
     remote_src: yes
     follow: yes
 
