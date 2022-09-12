@@ -1,37 +1,7 @@
-#  PRINT "installing nginx"
-#    yum install nginx -y &>> $LOG
-#    CHECKSTAT $?
-#
-#    PRINT "downloading ${COMPONENT} component"
-#    curl -L -o /tmp/${COMPONENT}.zip "https://github.com/roboshop-devops-project/${COMPONENT}/archive/main.zip" &>> $LOG
-#    CHECKSTAT $?
-#
-#    PRINT "clearing old content"
-#    cd /usr/share/nginx/html && rm -rf *
-#    CHECKSTAT $?
-#
-#    PRINT "extracting the content"
-#    unzip -o /tmp/${COMPONENT}.zip  &>> $LOG
-#    CHECKSTAT $?
-#
-#    PRINT "organizing the content"
-#    mv ${COMPONENT}-main/static/* . && mv ${COMPONENT}-main/localhost.conf /etc/nginx/default.d/roboshop.conf &>> $LOG
-#    CHECKSTAT $?
-#
-#    PRINT "updating ip adresses"
-#    sed -i -e '/catalogue/s/localhost/catalogue.roboshop.internal/' -e '/user/s/localhost/user.roboshop.internal/' -e '/cart/s/localhost/cart.roboshop.internal/' -e '/shipping/s/localhost/shipping.roboshop.internal/' -e '/payment/s/localhost/payment.roboshop.internal/' /etc/nginx/default.d/roboshop.conf
-#    CHECKSTAT $?
-#
-#    PRINT "enable & start service"
-#    systemctl enable nginx  &>> $LOG && systemctl start nginx &>> $LOG
-#    CHECKSTAT $?
-#
-#  }
-
-
 - name: installing nginx
   ansible.builtin.yum:
-    name: nginx
+    name:
+      - nginx
     state: installed
 
 - name: remove a directory & add directory
@@ -41,12 +11,6 @@
   loop:
     - absent
     - directory
-
-#- name: Create a directory if it does not exist
-#  ansible.builtin.file:
-#    path: /etc/some_directory
-#    state: directory
-#    mode: '0755'
 
 - name: downloading {{ COMPONENT }} component & extracting zip file
   ansible.builtin.unarchive:
@@ -60,4 +24,18 @@
     dest: /usr/share/nginx/html/
     remote_src: yes
     follow: yes
+
+- name: copy roboshop conf file
+  ansible.builtin.template:
+    src: roboshop_conf
+    dest: /etc/nginx/default.d/roboshop.conf
+
+- name: start frontend service
+  ansible.builtin.systemd:
+    name: frontend
+    state: started
+    enabled: yes
+    daemon_reload: yes
+
+
 
