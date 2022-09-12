@@ -1,16 +1,4 @@
-PRINT "downloading nodejs repo file"
-curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>> $LOG
-CHECKSTAT $?
-
-PRINT "installing nodejs "
-yum install nodejs -y &>> $LOG
-CHECKSTAT $?
-
-APP_COMMON_SETUP
-
-PRINT "install nodejs dependencies"
-npm install &>> $LOG
-CHECKSTAT $?
-
-SYSTEMD
-
+- name: task from common role
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: nodejs
