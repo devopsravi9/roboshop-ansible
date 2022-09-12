@@ -37,7 +37,7 @@
 - name: remove a directory & add directory
   ansible.builtin.file:
     path: /usr/share/nginx/html
-    state: absent
+    state: "{{item}}"
   loop:
     - absent
     - directory
