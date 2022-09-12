@@ -39,7 +39,7 @@
     name: mongodb-org
     state: installed
 
-- name: Replace old hostname with new hostname (requires Ansible >= 2.4)
+- name: update listen ip address
   ansible.builtin.replace:
     path: /etc/mongod.conf
     regexp: '127.0.0.1'
@@ -51,11 +51,19 @@
     state: restarted
     enabled: yes
 
-- name: take a download role
-  ansible.builtin.include_role:
-    name: common
-    tasks_from: download
+- name: downloading {{ COMPONENT }} component & extracting zip file
+  ansible.builtin.unarchive:
+    src: https://github.com/roboshop-devops-project/{{ COMPONENT }}/archive/main.zip
+    dest: /tmp
+    remote_src: yes
 
+- name: load schema
+  community.mongodb.mongodb_shell:
+    file: "/tmp/mongodb-main/{{item}}"
+    idempotent: yes
+  loop:
+    - catalogue.js
+    - users.js
 
 
 
