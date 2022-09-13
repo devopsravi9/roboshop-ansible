@@ -19,7 +19,7 @@
 - name: get uid & gid
   ansible.builtin.gather_facts:
     - UID: "{{ ansible_user_uid }}"
-    - GID: "{{ ansible_user_gid }}"
+
 
 - name: print variable
   ansible.builtin.debug:
