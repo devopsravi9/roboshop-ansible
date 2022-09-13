@@ -1,0 +1,21 @@
+- name: installing java
+  ansible.builtin.yum: maven
+  state: installed
+
+- name: run tasks from common role
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: download
+
+
+
+
+#- name: copy shipping conf file
+#  ansible.builtin.template:
+#    src: shipping_conf
+#    dest: /etc/systemd/system/{{ COMPONENT }}.service
+#
+#- name: start shipping service
+#  ansible.builtin.include_role:
+#    name: common
+#    tasks_from: systemd
