@@ -18,6 +18,7 @@
   ansible.builtin.systemd:
     name: mysqld
     enabled: yes
+    state: started
 
 - name: Fetch {{ COMPONENT }} Log File
   ansible.builtin.slurp:
