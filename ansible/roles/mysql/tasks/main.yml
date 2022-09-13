@@ -36,4 +36,4 @@
 
 - name: print output
   ansible.builtin.debug:
-    msg: "{{ mysql_log['content'] | b64decode | regex_findall('.*temporary password.*') | list }}"
+    msg: "{{ mysql_log['content'] | b64decode | regex_findall('.*temporary password.*') | list | last }}"
