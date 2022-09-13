@@ -31,9 +31,9 @@
 - name: check mysql pass is reset or not
   community.mysql.mysql_info:
     login_user: root
-    login_password: RoboShop@1
+    login_password: "{{ MYSQL_PASSWORD }}"
     filter: version
-  ignore_errors: yes
+  #ignore_errors: yes
   register: my_user
 
 - name: print data
