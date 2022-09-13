@@ -21,6 +21,7 @@
     name: mysqld
     state: started
     enabled: yes
+    daemon_reload: true
 
 - name: Fetch MySQL Log File
   ansible.builtin.slurp:
