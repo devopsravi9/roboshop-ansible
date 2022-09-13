@@ -27,4 +27,4 @@
 
 - name : grep password
   ansible.builtin.debug: msg {{ item }}
-  with_lines: grep 'temporary password' /var/log/mysqld.log
+  with_lines: cat /var/log/mysqld.log
