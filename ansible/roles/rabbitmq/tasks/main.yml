@@ -24,9 +24,9 @@
     user: roboshop
     password: "{{ RABBITMQ_PASSWORD }}"
     permissions:
-    vhost: /
-    configure_priv: .*
-    read_priv: .*
-    write_priv: .*
+      vhost: /
+      configure_priv: .*
+      read_priv: .*
+      write_priv: .*
     state: present
     tags: administrator
