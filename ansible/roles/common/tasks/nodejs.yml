@@ -8,43 +8,18 @@
   ansible.builtin.yum:
     name:
       - nodejs
-      - npm
     state: installed
 
-- name: Add the user 'roboshop'
-  ansible.builtin.user:
-    name: roboshop
-
-- name: downloading {{ COMPONENT }} component & extracting zip file
-  ansible.builtin.unarchive:
-    src: https://github.com/roboshop-devops-project/{{ COMPONENT }}/archive/main.zip
-    dest: /home/roboshop
-    remote_src: yes
-
-
-- name: remove old app content
-  ansible.builtin.file:
-    path: /home/roboshop/{{ COMPONENT }}
-    state: absent
-
-- name: organizing the content
-  ansible.builtin.copy:
-    src: /home/roboshop/{{ COMPONENT }}-main/
-    dest: /home/roboshop/{{ COMPONENT }}
-    remote_src: yes
-    follow: yes
+- name: run tasks from common role
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: download
 
 - name: Install packages based on package.json.
   community.general.npm:
     path: /home/roboshop/{{ COMPONENT }}
-- name: copy roboshop conf file
-  ansible.builtin.template:
-    src: service_file
-    dest: /etc/systemd/system/{{ COMPONENT }}.service
 
-- name: start frontend service
-  ansible.builtin.systemd:
-    name: "{{ COMPONENT }}"
-    state: restarted
-    enabled: yes
-    daemon_reload: yes
+- name: run tasks from common role
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: systemd
