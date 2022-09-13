@@ -43,7 +43,7 @@
   when: my_user is failed
 
 - name: Check Validate Password Plugins
-  ansible.builtin.shell: echo "show plugins"  | mysql -uroot -p"{{MYSQL_PASSWORD}}"
+  ansible.builtin.shell: echo "show plugins"  | mysql -uroot -p"{{MYSQL_PASSWORD}}" |  grep validate_password
   register: plugin_info
   ignore_errors: yes
 
