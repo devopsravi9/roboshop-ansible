@@ -1,0 +1,27 @@
+- name: set hostname
+  ansible.builtin.shell: set-hostname {{ COMPONENT }}
+
+- name: template a repo file
+  ansible.builtin.template:
+    src: redis_repo
+    dest: /etc/yum.repos.d/{{ COMPONENT }}.repo
+
+- name: installing {{ COMPONENT }}
+  ansible.builtin.yum:
+    name: redis
+    state: installed
+
+- name: update listen ip address
+  ansible.builtin.replace:
+    path: "{{ item }}"
+    regexp: '127.0.0.1'
+    replace: '0.0.0.0'
+    loop:
+    - /etc/{{ COMPONENT }}.conf
+    - /etc/redis/{{ COMPONENT }}.conf
+
+- name: start {{ COMPONENT }} service
+  ansible.builtin.systemd:
+    name: {{ COMPONENT }}
+    state: restarted
+    enabled: yes
