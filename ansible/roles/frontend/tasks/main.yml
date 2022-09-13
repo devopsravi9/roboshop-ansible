@@ -1,3 +1,6 @@
+- name: set hostname
+  ansible.builtin.shell: set-hostname {{ COMPONENT }}
+
 - name: installing nginx
   ansible.builtin.yum:
     name:
