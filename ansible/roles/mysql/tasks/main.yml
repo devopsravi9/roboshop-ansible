@@ -1,3 +1,7 @@
+#- name: Fail if "MYSQL_PASSWORD" is undefined
+#  ansible.builtin.fail: . This play requires 'MYSQL_PASSWORD'
+#  when: MYSQL_PASSWORD is undefined
+
 - name: template a repo file
   ansible.builtin.template:
     src: mysql_repo
@@ -25,6 +29,6 @@
   ansible.builtin.debug:
     msg: "{{ MYSQL_DEFAULT_PASSWORD }}"
 
-- name : grep password
-  ansible.builtin.debug: msg {{ item }}
-  with_lines: cat /var/log/mysqld.log
+- name: print output
+  ansible.builtin.debug:
+    msg: "{{ lookup('/var/log/mysqld.log') }}"
