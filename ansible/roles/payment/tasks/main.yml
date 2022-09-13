@@ -25,7 +25,7 @@
     path: /home/roboshop/payment/payment.ini
     regexp: '^{{ item.key }}'
     line: "{{ item.value }}"
-    loop:
+  loop:
     - { key: 'uid', value: 'uid = {{ app_user.uid }}' }
     - { key: 'gid', value: 'gid = {{ app_user.group }}' }
 
