@@ -26,8 +26,8 @@
     regexp: '^{{ item.key }}'
     line: "{{ item.value }}"
     loop:
-    - { key: 'uid', value: 'uid = {{ ansible_user_uid }}' }
-    - { key: 'gid', value: 'gid = {{ ansible_user_gid }}' }
+    - { key: 'uid', value: 'uid = {{ app_user.uid }}' }
+    - { key: 'gid', value: 'gid = {{ app_user.group }}' }
 
 - name: task from common role
   ansible.builtin.include_role:
