@@ -16,10 +16,9 @@
     requirements: /home/roboshop/payment/requirements.txt
     executable: pip3
 
-#- name: get uid & gid
-#  ansible.builtin.gather_facts:
-#    - UID: "{{ ansible_user_uid }}"
-#
+- name: Show facts available on the system
+  ansible.builtin.debug:
+    var: ansible_facts
 
 - name: print variable
   ansible.builtin.debug:
