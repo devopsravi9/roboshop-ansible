@@ -1,6 +1,7 @@
 - name: installing java
-  ansible.builtin.yum: maven
-  state: installed
+  ansible.builtin.yum:
+    name: maven
+    state: installed
 
 - name: run tasks from common role
   ansible.builtin.include_role:
