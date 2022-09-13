@@ -11,7 +11,7 @@
   ansible.builtin.yum:
     name:
       - mysql-community-server
-      - MySql-python
+      - MySQL-python
     state: latest
 
 - name: start {{ COMPONENT }}
