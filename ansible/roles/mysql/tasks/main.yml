@@ -36,7 +36,7 @@
 
 - name: setting user
   ansible.builtin.shell:
-    - echo "ALTER USER 'root'@'localhost' IDENTIFIED BY '{{MYSQL_PASSWORD}}';" | mysql --connect-expired-password -uroot -p"{{MYSQL_DEFAULT_PASSWORD}}"
+    - echo "ALTER USER 'root'@'localhost' IDENTIFIED BY '{{MYSQL_PASSWORD}}';" | mysql --connect-expired-password -uroot -p{{MYSQL_DEFAULT_PASSWORD}}
   when: my_user is failed
 
 - name: Check Validate Password Plugins
