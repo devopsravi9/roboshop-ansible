@@ -33,7 +33,7 @@
   community.mysql.mysql_info:
     login_user: root
     login_password: "{{ MYSQL_PASSWORD }}"
-    filter: version
+  filter: version
   #ignore_errors: yes
   register: my_user
 
