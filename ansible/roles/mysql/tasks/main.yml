@@ -1,39 +1,65 @@
-#- name: Fail if "MYSQL_PASSWORD" is undefined
-#  ansible.builtin.fail: . This play requires 'MYSQL_PASSWORD'
-#  when: MYSQL_PASSWORD is undefined
+- name: Fail if "MYSQL_PASSWORD" is undefined
+  ansible.builtin.fail: . This play requires 'MYSQL_PASSWORD'
+  when: MYSQL_PASSWORD is undefined
 
 - name: template a repo file
   ansible.builtin.template:
     src: mysql_repo
-    dest: /etc/yum.repos.d/mysql.repo
+    dest: /etc/yum.repos.d/{{ COMPONENT }}.repo
 
 - name: install mysql
   ansible.builtin.yum:
     name: mysql-community-server
     state: installed
 
-- name: start mysql
+- name: start {{ COMPONENT }}
   ansible.builtin.systemd:
     name: mysqld
     enabled: yes
 
-- name: grep password
-  ansible.builtin.shell: "grep 'temporary password' /var/log/mysqld.log | awk  '{print$NF}'"
-  register: output
-
-- name:
-  ansible.builtin.set_fact:
-    MYSQL_DEFAULT_PASSWORD: "{{ output.stdout }}"
-
-- name: print output
-  ansible.builtin.debug:
-    msg: "{{ MYSQL_DEFAULT_PASSWORD }}"
-
-- name: Fetch MySQL Log File
+- name: Fetch {{ COMPONENT }} Log File
   ansible.builtin.slurp:
     src: /var/log/mysqld.log
   register: mysql_log
 
 - name: print output
-  ansible.builtin.debug:
-    msg: "{{ mysql_log['content'] | b64decode | regex_findall('.*temporary password.*') | join(' ') | split(' ') | last }}"
+  ansible.builtin.set_fact:
+    MYSQL_DEFAULT_PASSWORD: "{{ mysql_log['content'] | b64decode | regex_findall('.*temporary password.*') | join(' ') | split(' ') | last }}"
+
+- name: check mysql pass is reset or not
+  community.mysql.mysql_info:
+    login_user: root
+    login_password: "{{ MYSQL_PASSWORD }}"
+    filter: version
+  ignore_errors: yes
+  register: my_user
+
+- name: setting user
+  ansible.builtin.shell:
+  - echo "ALTER USER 'root'@'localhost' IDENTIFIED BY '{{MYSQL_PASSWORD}}';" | mysql --connect-expired-password -uroot -p"{{MYSQL_DEFAULT_PASSWORD}}"
+  when: my_user is failed
+
+- name: Check Validate Password Plugins
+  ansible.builtin.shell: echo show plugins  | mysql -uroot -p"{{MYSQL_PASSWORD}}"
+  register: plugin_info
+  ignore_errors: yes
+
+- name: Remove Validate Password Plugin
+  ansible.builtin.shell: echo "uninstall plugin validate_password;" | mysql -uroot -p"{{MYSQL_PASSWORD}}"
+  when: plugin_info is succeeded
+
+- name: downloading {{ COMPONENT }} component & extracting zip file
+  ansible.builtin.unarchive:
+    src: https://github.com/roboshop-devops-project/{{ COMPONENT }}/archive/main.zip
+    dest: /tmp
+    remote_src: yes
+
+- name: Try to create database as root
+  community.mysql.mysql_db:
+    login_user: root
+    login_password: "{{ MYSQL_PASSWORD }}"
+    name: all
+    state: import
+    target: /tmp/{{ COMPONENT }}-main/shipping.sql
+
+
