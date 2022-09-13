@@ -81,3 +81,12 @@
     ansible_user : centos
     ansible_password : DevOps321
     RABBITMQ_PASSWORD: roboshop123
+
+- name: run ansible playbook
+  hosts: PAYMENT
+  roles:
+  - payment
+  become: yes
+  vars :
+    ansible_user : centos
+    ansible_password : DevOps321
