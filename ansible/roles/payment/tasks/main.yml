@@ -16,10 +16,6 @@
     requirements: /home/roboshop/payment/requirements.txt
     executable: pip3
 
-- name: Show facts available on the system
-  ansible.builtin.debug:
-    var: ansible_facts[ansible_user_uid]
-
 - name: print variable
   ansible.builtin.debug:
     msg: "{{ app_user }}"
