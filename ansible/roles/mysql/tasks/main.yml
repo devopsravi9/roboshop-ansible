@@ -38,17 +38,12 @@
   ignore_errors: yes
   register: my_user
 
-- name: print data
-  ansible.builtin.debug:
-    msg: "{{ my_user }}"
-
-
 - name: Reset MySQL Password
   ansible.builtin.shell: echo "ALTER USER 'root'@'localhost' IDENTIFIED BY '{{MYSQL_PASSWORD}}';" | mysql --connect-expired-password -uroot -p"{{MYSQL_DEFAULT_PASSWORD}}"
   when: my_user is failed
 
 - name: Check Validate Password Plugins
-  ansible.builtin.shell: echo show plugins  | mysql -uroot -p"{{MYSQL_PASSWORD}}"
+  ansible.builtin.shell: echo "show plugins"  | mysql -uroot -p"{{MYSQL_PASSWORD}}"
   register: plugin_info
   ignore_errors: yes
 
