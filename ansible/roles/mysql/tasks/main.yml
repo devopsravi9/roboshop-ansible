@@ -12,6 +12,7 @@
     name:
       - mysql-community-server
       - MySQL-python
+      - python36-PyMySQL
     state: latest
 
 - name: start {{ COMPONENT }}
