@@ -1,6 +1,7 @@
 - name: installing java
   ansible.builtin.yum:
-    name: maven
+    name:
+      - maven
     state: installed
 
 - name: run tasks from common role
