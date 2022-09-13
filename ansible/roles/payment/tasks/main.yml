@@ -23,7 +23,7 @@
 
 - name: print variable
   ansible.builtin.debug:
-    msg: "{{ ansibleansible_user_uid }}"
+    msg: "{{ ansible_facts.ansible_user_uid }}"
 
 - name: Replace a uid & gid
   ansible.builtin.lineinfile:
