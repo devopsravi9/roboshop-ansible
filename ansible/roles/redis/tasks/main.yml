@@ -16,9 +16,9 @@
     path: "{{ item }}"
     regexp: '127.0.0.1'
     replace: '0.0.0.0'
-    loop:
-      - /etc/{{ COMPONENT }}.conf
-      - /etc/redis/{{ COMPONENT }}.conf
+  loop:
+    - /etc/{{ COMPONENT }}.conf
+    - /etc/redis/{{ COMPONENT }}.conf
 
 - name: start {{ COMPONENT }} service
   ansible.builtin.systemd:
