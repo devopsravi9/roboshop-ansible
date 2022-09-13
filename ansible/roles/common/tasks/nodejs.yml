@@ -26,7 +26,7 @@
 
 - name: organizing the content
   ansible.builtin.copy:
-    src: /home/roboshop/{{ COMPONENT }}-main
+    src: /home/roboshop/{{ COMPONENT }}-main/
     dest: /home/roboshop/{{ COMPONENT }}
     remote_src: yes
     follow: yes
