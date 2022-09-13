@@ -18,6 +18,13 @@
     dest: /home/roboshop
     remote_src: yes
 
+
+- name: remove old app content
+  ansible.builtin.file:
+    path: /home/roboshop/{{ COMPONENT }}
+    state: absent
+  Return Values
+
 - name: organizing the content
   ansible.builtin.copy:
     src: /home/roboshop/{{ COMPONENT }}-main
@@ -27,8 +34,7 @@
 
 - name: Install packages based on package.json.
   community.general.npm:
-    path: /home/roboshop/{{ COMPONENT }}/{{ COMPONENT }}-main/
-
+    path: /home/roboshop/{{ COMPONENT }}
 - name: copy roboshop conf file
   ansible.builtin.template:
     src: service_file
