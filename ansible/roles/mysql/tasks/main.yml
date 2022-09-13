@@ -1,5 +1,5 @@
 - name: Fail if "MYSQL_PASSWORD" is undefined
-  ansible.builtin.fail: . This play requires 'MYSQL_PASSWORD'
+  ansible.builtin.fail:
   when: MYSQL_PASSWORD is undefined
 
 - name: template a repo file
