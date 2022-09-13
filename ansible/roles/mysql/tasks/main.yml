@@ -12,7 +12,7 @@
     name:
       - mysql-community-server
       - MySQL-python
-    state: installed
+    state: latest
 
 - name: start {{ COMPONENT }}
   ansible.builtin.systemd:
