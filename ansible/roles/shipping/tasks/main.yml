@@ -14,12 +14,12 @@
   args:
     chdir: /home/roboshop/{{COMPONENT}}
 
- name: copy shipping conf file
- ansible.builtin.template:
-   src: shipping_conf
-   dest: /etc/systemd/system/{{ COMPONENT }}.service
+- name: copy shipping conf file
+  ansible.builtin.template:
+    src: shipping_conf
+    dest: /etc/systemd/system/{{ COMPONENT }}.service
 
- name: start shipping service
- ansible.builtin.include_role:
-   name: common
-   tasks_from: systemd
+- name: start shipping service
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: systemd
