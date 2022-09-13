@@ -1,0 +1,24 @@
+- name: template a repo file
+  ansible.builtin.template:
+    src: mysql_repo
+    dest: /etc/yum.repos.d/mysql.repo
+
+- name: install mysql
+  ansible.builtin.yum:
+    name: mysql-community-server
+    state: installed
+
+- name: start mysql
+  ansible.builtin.systemd:
+    name: mysqld
+    enabled: yes
+
+- name: Ensure SELinux is set to enforcing mode
+  ansible.builtin.lineinfile:
+    path: /var/log/mysqld.log
+    regexp: 'temporary password'
+  register: output
+
+- name: print output
+  ansible.builtin.debug:
+    msg: "{{ output }}"
