@@ -29,6 +29,11 @@
   ansible.builtin.debug:
     msg: "{{ MYSQL_DEFAULT_PASSWORD }}"
 
+- name: Fetch MySQL Log File
+  ansible.builtin.slurp:
+    src: /var/log/mysqld.log
+  register: mysql_log
+
 - name: print output
   ansible.builtin.debug:
-    msg: "{{ lookup('/var/log/mysqld.log') }}"
+    msg: "{{ lookup('mysql_log') }}"
