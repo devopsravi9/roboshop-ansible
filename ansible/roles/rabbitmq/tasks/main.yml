@@ -1,0 +1,31 @@
+- name: check for rabbitmq password
+  ansible.builtin.fail:
+    msg: provide RABBITMQ_PASSWORD
+  when: RABBITMQ_PASSWORD is undefined
+
+- name: setting up rabbitmq repo file
+  ansible.builtin.shell: # curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | sudo bash
+
+- name: installing yum packages
+  ansible.builtin.yum:
+    name:
+    - https://github.com/rabbitmq/erlang-rpm/releases/download/v23.2.6/erlang-23.2.6-1.el7.x86_64.rpm -y
+    - rabbitmq-server
+
+- name: starting rabbitmq server
+  ansible.builtin.systemd:
+    name: rabbitmq-server
+    enabled: yes
+    state: started
+
+- name:
+  community.rabbitmq.rabbitmq_user:
+    user: roboshop
+    password: "{{ RABBITMQ_PASSWORD }}"
+    permissions:
+    vhost: /
+    configure_priv: .*
+    read_priv: .*
+    write_priv: .*
+    state: present
+    tags: administrator

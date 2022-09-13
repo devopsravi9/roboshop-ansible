@@ -62,3 +62,22 @@
     ansible_password : DevOps321
     MYSQL_PASSWORD: RoboShop@1
 
+- name: run ansible playbook
+  hosts: SHIPPING
+  roles:
+  - shipping
+  become: yes
+  vars :
+    ansible_user : centos
+    ansible_password : DevOps321
+
+
+- name: run ansible playbook
+  hosts: RABBITMQ
+  roles:
+  - rabbitmq
+  become: yes
+  vars :
+    ansible_user : centos
+    ansible_password : DevOps321
+    RABBITMQ_PASSWORD: roboshop123
