@@ -1,0 +1,40 @@
+- name: Install python
+  ansible.builtin.yum:
+    name:
+    - python36
+    - gcc
+    - python3-devel
+    state: installed
+
+- name: run task from common role
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: download
+
+- name: Install specified python requirements using pip3
+  ansible.builtin.pip:
+    requirements: /home/roboshop/payment/requirements.txt
+    executable: pip3
+
+#- name: get uid & gid
+#  ansible.builtin.set_fact:
+#    - UID: "{{ ansible_user_uid }}"
+#    - GID: "{{ ansible_user_gid }}"
+
+- name: print variable
+  ansible.builtin.debug:
+    msg: "{{ ansible_user_uid }}" & {{ ansible_user_gid }}
+
+- name: Replace a uid & gid
+  ansible.builtin.lineinfile:
+    path: /home/roboshop/payment/payment.ini
+    regexp: '^{{ item.key }}'
+    line: "{{ item.value }}"
+    loop:
+    - { key: 'uid', value: 'uid = {{ ansible_user_uid }}' }
+    - { key: 'gid', value: 'gid = {{ ansible_user_gid }}' }
+
+- name: task from common role
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: systemd
