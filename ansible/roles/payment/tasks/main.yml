@@ -16,14 +16,14 @@
     requirements: /home/roboshop/payment/requirements.txt
     executable: pip3
 
-#- name: get uid & gid
-#  ansible.builtin.set_fact:
-#    - UID: "{{ ansible_user_uid }}"
-#    - GID: "{{ ansible_user_gid }}"
+- name: get uid & gid
+  ansible.builtin.gather_facts:
+    - UID: "{{ ansible_user_uid }}"
+    - GID: "{{ ansible_user_gid }}"
 
 - name: print variable
   ansible.builtin.debug:
-    msg: "{{ ansible_user_uid }}"
+    msg: "{{ ansibleansible_user_uid }}"
 
 - name: Replace a uid & gid
   ansible.builtin.lineinfile:
