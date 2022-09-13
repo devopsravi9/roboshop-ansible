@@ -23,7 +23,6 @@
   ansible.builtin.file:
     path: /home/roboshop/{{ COMPONENT }}
     state: absent
-  Return Values
 
 - name: organizing the content
   ansible.builtin.copy:
