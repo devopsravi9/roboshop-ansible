@@ -14,7 +14,7 @@
     enabled: yes
 
 - name: grep password
-  ansible.builtin.shell: grep 'temporary password' /var/log/mysqld.log | awk -F " " '{print$NF}'
+  ansible.builtin.shell: "grep 'temporary password' /var/log/mysqld.log | awk -F " " '{print$NF}'"
   register: output
 
 - name: print output
