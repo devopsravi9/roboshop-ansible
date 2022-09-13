@@ -8,7 +8,7 @@
 
 - name: installing {{ COMPONENT }}
   ansible.builtin.yum:
-    name: redis
+    name: redis-6.2.7
     state: installed
 
 - name: update listen ip address
@@ -22,6 +22,6 @@
 
 - name: start {{ COMPONENT }} service
   ansible.builtin.systemd:
-    name: "{{ COMPONENT }}"
+    name: redis
     state: restarted
     enabled: yes
