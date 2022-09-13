@@ -1,3 +1,6 @@
+- name: set name
+  ansible.builtin.shell: set-hostname payment
+
 - name: Install python
   ansible.builtin.yum:
     name:
@@ -16,9 +19,9 @@
     requirements: /home/roboshop/payment/requirements.txt
     executable: pip3
 
-- name: print variable
-  ansible.builtin.debug:
-    msg: "{{ app_user }}"
+#- name: print variable
+#  ansible.builtin.debug:
+#    msg: "{{ app_user }}"
 
 - name: Replace a uid & gid
   ansible.builtin.lineinfile:
