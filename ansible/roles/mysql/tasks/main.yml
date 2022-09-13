@@ -19,4 +19,4 @@
 
 - name: print output
   ansible.builtin.debug:
-    msg: "{{ output }}"
+    msg: "{{ output.stdout }}"
