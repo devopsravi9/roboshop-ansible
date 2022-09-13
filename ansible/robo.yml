@@ -1,5 +1,7 @@
 - name: run ansible playbook
-  hosts: localhost
+  hosts: "{{ HOST }}"
   roles:
     - "{{ ROLE }}"
   become: yes
+  var:
+    RABBITMQ_PASSWORD: roboshop123

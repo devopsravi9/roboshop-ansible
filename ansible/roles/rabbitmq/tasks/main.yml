@@ -19,7 +19,7 @@
     enabled: yes
     state: started
 
-- name:
+- name: adding user to rabbitmq
   community.rabbitmq.rabbitmq_user:
     user: roboshop
     password: "{{ RABBITMQ_PASSWORD }}"
