@@ -13,13 +13,8 @@
     name: mysqld
     enabled: yes
 
-- name: Ensure SELinux is set to enforcing mode
-  ansible.builtin.lineinfile:
-    path: /var/log/mysqld.log
-    regexp: 'temporary password'
-    owner : root
-    group : root
-    mode : '0644'
+- name: grep password
+  ansible.builtin.shell: grep 'temporary password' /var/log/mysqld.log | awk -F " " '{print$NF}'
   register: output
 
 - name: print output
