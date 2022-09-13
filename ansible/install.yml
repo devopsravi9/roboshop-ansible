@@ -24,3 +24,41 @@
   vars :
     ansible_user : centos
     ansible_password : DevOps321
+
+- name : run ansible playbook
+  hosts : REDIS
+  roles :
+  - redis
+  become : yes
+  vars :
+    ansible_user : centos
+    ansible_password : DevOps321
+
+- name: run ansible playbook
+  hosts: USER
+  roles:
+  - user
+  become: yes
+  vars :
+    ansible_user : centos
+    ansible_password : DevOps321
+
+- name: run ansible playbook
+  hosts: CART
+  roles:
+  - cart
+  become: yes
+  vars :
+    ansible_user : centos
+    ansible_password : DevOps321
+
+- name: run ansible playbook
+  hosts: MYSQL
+  roles:
+  - mysql
+  become: yes
+  vars :
+    ansible_user : centos
+    ansible_password : DevOps321
+    MYSQL_PASSWORD: RoboShop@1
+
