@@ -4,5 +4,3 @@
   roles:
     - "{{ ROLE }}"
   become: yes
-  vars:
-    RABBITMQ_PASSWORD: roboshop123
