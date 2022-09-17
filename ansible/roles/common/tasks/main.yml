@@ -15,4 +15,4 @@
 - name: print secret
   debug:
     msg: msg printed
-  when: SECRET_REQ | bool
+  when: SECRET_REQ is defined
