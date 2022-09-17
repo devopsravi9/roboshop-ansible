@@ -3,7 +3,7 @@
 
 - name: get the variables
   ansible.builtin.debug:
-    msg:  "{{ lookup('amazon.aws.aws_secret',  region='us-east-1' ) }}"
+    msg:  "{{ lookup('amazon.aws.aws_secret', 'roboshop/all', region='us-east-1' ) }}"
 
 #- name: download {{ COMPONENT }} repo file
 #  ansible.builtin.shell: https://rpm.nodesource.com/setup_lts.x | bash
