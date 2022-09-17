@@ -7,3 +7,4 @@
     - boto3
     - botocore
     executable: pip3
+  when: SECRET_REQ == 'true'

@@ -1,31 +1,23 @@
-#- name: set hostname
-#  ansible.builtin.shell: set-hostname {{ COMPONENT }}
+- name: download {{ COMPONENT }} repo file
+  ansible.builtin.shell: https://rpm.nodesource.com/setup_lts.x | bash
 
-- name: get the variables
-  ansible.builtin.debug:
-    msg:  "{{ SECRETS.AMQP_PASS }}"
+- name: Install the nodejs
+  ansible.builtin.yum:
+    name:
+      - nodejs
+      - npm
+    state: installed
 
-#- name: download {{ COMPONENT }} repo file
-#  ansible.builtin.shell: https://rpm.nodesource.com/setup_lts.x | bash
-#
-#- name: Install the nodejs
-#  ansible.builtin.yum:
-#    name:
-#      - nodejs
-#      - npm
-#    state: installed
-#
-#- name: run tasks from common role
-#  ansible.builtin.include_role:
-#    name: common
-#    tasks_from: download
-#
-#- name: Install packages based on package.json.
-#  community.general.npm:
-#    path: /home/roboshop/{{ COMPONENT }}
-#
-#- name: run tasks from common role
-#  ansible.builtin.include_role:
-#    name: common
-#    tasks_from: systemd
-#
+- name: run tasks from common role
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: download
+
+- name: Install packages based on package.json.
+  community.general.npm:
+    path: /home/roboshop/{{ COMPONENT }}
+
+- name: run tasks from common role
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: systemd
