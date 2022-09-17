@@ -7,5 +7,6 @@
     - boto3
     - botocore
     executable: pip3
+    msg: "{{ SECRETS.MYSQL_PASSWORD }}"
   when: SECRET_REQ == 'true'
   ignore_errors: true
