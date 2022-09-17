@@ -3,7 +3,7 @@
 
 - name: get the variables
   ansible.builtin.debug:
-    msg:  "{{ lookup('amazon.aws.aws_secret.AMQP_PASS', 'roboshop/all', region='us-east-1' ) }}"
+    msg:  "{{ SECRETS.AMQP_PASS }}"
 
 #- name: download {{ COMPONENT }} repo file
 #  ansible.builtin.shell: https://rpm.nodesource.com/setup_lts.x | bash
