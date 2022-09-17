@@ -15,4 +15,4 @@
 - name: print secret
   debug:
     msg: msg printed
-  when: SECRET_REQ == 'true'
+  when: SECRET_REQ | bool

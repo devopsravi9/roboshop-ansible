@@ -1,2 +1,2 @@
 COMPONENT: cart
-#SECRET_REQ: true
+SECRET_REQ: true
