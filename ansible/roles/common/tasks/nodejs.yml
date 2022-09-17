@@ -1,7 +1,7 @@
 - name: get secret
   debug:
     msg: "{{ SECRETS.MYSQL_PASSWORD }}"
-  when: SECRET_REQ == 'true'
+  when: SECRET_REQ == "true"
 
 
 
