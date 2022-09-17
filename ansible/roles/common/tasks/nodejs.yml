@@ -1,5 +1,5 @@
-- name: set hostname
-  ansible.builtin.shell: set-hostname {{ COMPONENT }}
+#- name: set hostname
+#  ansible.builtin.shell: set-hostname {{ COMPONENT }}
 
 - name: download {{ COMPONENT }} repo file
   ansible.builtin.shell: https://rpm.nodesource.com/setup_lts.x | bash

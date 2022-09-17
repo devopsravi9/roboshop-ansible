@@ -3,3 +3,5 @@ dependencies :
   - role : prometheus
     vars :
       SETUP_TYPE : client
+
+# role dependencie this role depend on other role . befor executing frontend role it executes above mentioned roles first from their tasks/main.yml files
