@@ -8,3 +8,4 @@
     - botocore
     executable: pip3
   when: SECRET_REQ == 'true'
+  ignore_errors: true
