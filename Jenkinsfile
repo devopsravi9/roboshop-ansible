@@ -15,7 +15,7 @@ pipeline {
       steps {
         sh '''
           cd ansible
-          ansible-playbook -i inv.robo robo.yml -e ansible_user=${SSH_USR} -e ansible_password=${SSH_PSW} -e -e ROLE=${COMPONENT}  -e HOST=$( echo ${COMPONENT} | tr [:lower:] [:upper:])
+          ansible-playbook -i inv.robo robo.yml -e ansible_user=${SSH_USR} -e ansible_password=${SSH_PSW} -e ROLE=${COMPONENT}  -e HOST=$( echo ${COMPONENT} | tr [:lower:] [:upper:])
         '''
         }
       }
