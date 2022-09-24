@@ -5,13 +5,13 @@
       - nginx
     state: installed
 
-- name: remove a directory & add directory
-  ansible.builtin.file:
-    path: "{{ APP_LOCATION }}"
-    state: "{{item}}"
-  loop:
-  - absent
-  - directory
+#- name: remove a directory & add directory
+#  ansible.builtin.file:
+#    path: "{{ APP_LOCATION }}"
+#    state: "{{item}}"
+#  loop:
+#  - absent
+#  - directory
 
 #- name: downloading {{ COMPONENT }} component & extracting zip file
 #  ansible.builtin.unarchive:
