@@ -9,16 +9,17 @@
 #    dest: /home/roboshop
 #    remote_src: yes
 
-- name: downloading {{ COMPONENT }} component & extracting zip file
-  ansible.builtin.unarchive:
-    src: http://172.31.8.168:8081/repository/{{ COMPONENT }}/{{ COMPONENT }}-{{ TAG_NAME }}/{{ COMPONENT }}-{{ TAG_NAME }}.zip
-    dest: /home/roboshop/{{ COMPONENT }}
-    remote_src: yes
-
 - name: remove old app content
   ansible.builtin.file:
     path: /home/roboshop/{{ COMPONENT }}
     state: absent
+
+- name: downloading {{ COMPONENT }} component & extracting zip file
+  ansible.builtin.unarchive:
+    src: http://172.31.8.168:8081/repository/{{ COMPONENT }}/{{ COMPONENT }}-{{ TAG_NAME }}/{{ COMPONENT }}-{{ TAG_NAME }}.zip
+    creates: /home/roboshop/{{ COMPONENT }}
+    remote_src: yes
+
 #
 #- name: organizing the content
 #  ansible.builtin.copy:
