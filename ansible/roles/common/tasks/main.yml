@@ -8,7 +8,7 @@
     - boto3
     - botocore
     executable: pip3
-  when: SECRET_REQ is defined
+  #when: SECRET_REQ is defined
 
 
 
