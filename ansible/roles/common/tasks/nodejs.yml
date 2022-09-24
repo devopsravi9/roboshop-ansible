@@ -5,7 +5,7 @@
   ansible.builtin.yum:
     name:
       - nodejs
-      - npm
+    #  - npm
     state: installed
 
 - name: run tasks from common role
