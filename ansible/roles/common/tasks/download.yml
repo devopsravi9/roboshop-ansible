@@ -28,7 +28,7 @@
 
 - name: downloading {{ COMPONENT }} component & extracting zip file
   ansible.builtin.unarchive:
-    src: http://172.31.8.168:8081/repository/{{ COMPONENT }}/{{ COMPONENT }}-{{ TAG.stdout }}/{{ COMPONENT }}-{{ TAG.stdout }}.zip
+    src: http://172.31.8.168:8081/repository/{{ COMPONENT }}/{{ COMPONENT }}-{{ TAG.stdout }}.zip
     remote_src: yes
     dest: /home/roboshop/{{ COMPONENT }}
   when: TAG_NAME is undefined
@@ -36,7 +36,7 @@
 
 - name: downloading {{ COMPONENT }} component & extracting zip file
   ansible.builtin.unarchive:
-    src: http://172.31.8.168:8081/repository/{{ COMPONENT }}/{{ COMPONENT }}-{{ TAG_NAME }}/{{ COMPONENT }}-{{ TAG_NAME }}.zip
+    src: http://172.31.8.168:8081/repository/{{ COMPONENT }}/{{ COMPONENT }}-{{ TAG_NAME }}.zip
     remote_src: yes
     dest: /home/roboshop/{{ COMPONENT }}
   when: TAG_NAME is defined
