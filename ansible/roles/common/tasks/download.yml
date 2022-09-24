@@ -25,6 +25,9 @@
   register: TAG
   when: TAG_NAME is undefined
 
+-name: check
+  debug:
+    msg: "{{TAG}}"
 
 - name: downloading latest {{ COMPONENT }} component & extracting zip file
   ansible.builtin.unarchive:
