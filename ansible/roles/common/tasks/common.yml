@@ -1,3 +1,24 @@
+- name: Add the user 'roboshop'
+  ansible.builtin.user:
+    name: roboshop
+  register: app_user
+
+#- name: downloading {{ COMPONENT }} component & extracting zip file
+#  ansible.builtin.unarchive:
+#    src: https://github.com/roboshop-devops-project/{{ COMPONENT }}/archive/main.zip
+#    dest: /home/roboshop
+#    remote_src: yes
+
+- name: remove old app content
+  ansible.builtin.file:
+    path: /home/roboshop/{{ COMPONENT }}
+    state: absent
+
+- name: create new app folder
+  ansible.builtin.file:
+    path: /home/roboshop/{{ COMPONENT }}
+    state: directory
+
 - name: get latest version of {{ COMPONENT }}
   ansible.builtin.shell:
     cmd:  curl -s http://44.204.245.24:8081/service/rest/repository/browse/cart/ | grep zip | sed -e 's/cart-/ /g' -e 's/.zip/ /g' | tail -n1 | awk -F ' ' '{print $3}'
