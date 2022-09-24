@@ -25,7 +25,7 @@
   register: TAG
   when: TAG_NAME is undefined
 
--name: check
+- name: check
   debug:
     msg: "{{TAG}}"
 
