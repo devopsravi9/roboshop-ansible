@@ -2,6 +2,7 @@
   ansible.builtin.user:
     name: roboshop
   register: app_user
+  when: COMPONENT != frontend
 
 #- name: downloading {{ COMPONENT }} component & extracting zip file
 #  ansible.builtin.unarchive:
@@ -12,39 +13,11 @@
 - name: remove old app content
   ansible.builtin.file:
     path: /home/roboshop/{{ COMPONENT }}
-    state: absent
-
-- name: create new app folder
-  ansible.builtin.file:
-    path: /home/roboshop/{{ COMPONENT }}
-    state: directory
-
-- name: get latest version of {{ COMPONENT }}
-  ansible.builtin.shell:
-    cmd:  curl -s http://44.204.245.24:8081/service/rest/repository/browse/cart/ | grep zip | sed -e 's/cart-/ /g' -e 's/.zip/ /g' | tail -n1 | awk -F ' ' '{print $3}'
-  register: TAG
-  when: TAG_NAME is undefined
+    state: "{{item}}"
+  loop:
+  - absent
+  - directory
 
 
-- name: downloading latest {{ COMPONENT }} component & extracting zip file
-  ansible.builtin.unarchive:
-    src: http://172.31.8.168:8081/repository/{{ COMPONENT }}/{{ COMPONENT }}-{{ TAG.stdout }}.zip
-    remote_src: yes
-    dest: /home/roboshop/{{ COMPONENT }}
-  when: TAG_NAME is undefined
 
 
-- name: downloading {{ COMPONENT }} component & extracting zip file
-  ansible.builtin.unarchive:
-    src: http://172.31.8.168:8081/repository/{{ COMPONENT }}/{{ COMPONENT }}-{{ TAG_NAME }}.zip
-    remote_src: yes
-    dest: /home/roboshop/{{ COMPONENT }}
-  when: TAG_NAME is defined
-
-#
-#- name: organizing the content
-#  ansible.builtin.copy:
-#    src: /home/roboshop/{{ COMPONENT }}-main/
-#    dest: /home/roboshop/{{ COMPONENT }}
-#    remote_src: yes
-#    follow: yes

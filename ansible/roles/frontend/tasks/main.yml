@@ -1,5 +1,3 @@
-#- name: set hostname
-#  ansible.builtin.shell: set-hostname {{ COMPONENT }}
 
 - name: installing nginx
   ansible.builtin.yum:
@@ -28,7 +26,10 @@
 #    remote_src: yes
 #    follow: yes
 
-
+- name: tasks from common role
+  ansible.builtin.include_role:
+    role: common
+    tasks_from: download
 
 
 - name: copy roboshop conf file
