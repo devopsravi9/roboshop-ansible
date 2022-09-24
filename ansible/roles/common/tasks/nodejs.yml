@@ -11,10 +11,8 @@
 - name: run tasks from common role
   ansible.builtin.include_role:
     name: common
-    tasks_from: "{{item}}"
-  loop:
-  - common
-  - download
+    tasks_from: download
+
 
 #- name: Install packages based on package.json.
 #  community.general.npm:
