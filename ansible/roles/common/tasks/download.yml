@@ -21,7 +21,7 @@
 
 - name: get latest version of {{ COMPONENT }}
   ansible.builtin.shell:
-    cmd:  curl -s "http://44.197.243.70:8081/service/rest/repository/browse/${COMPONENT}/"| grep zip | sed -e 's/${COMPONENT}-/ /g' -e 's/.zip/ /g' | tail -n1 | awk -F ' ' '{print $3}'
+    cmd:  curl -s "http://44.197.243.70:8081/service/rest/repository/browse/${COMPONENT}/"| grep zip | sed -e "s/${COMPONENT}-/ /g" -e 's/.zip/ /g' | tail -n1 | awk -F ' ' '{print $3}'
   register: TAG
   when: TAG_NAME is undefined
 
