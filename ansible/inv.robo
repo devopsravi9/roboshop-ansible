@@ -18,3 +18,5 @@ redis.roboshop.internal
 mongodb.roboshop.internal
 [RABBITMQ]
 rabbitmq.roboshop.internal
+[LOCAL]
+172.31.4.184
