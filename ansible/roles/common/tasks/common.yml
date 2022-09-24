@@ -2,7 +2,7 @@
   ansible.builtin.user:
     name: roboshop
   register: app_user
-  when: COMPONENT != frontend
+  when: COMPONENT != "frontend"
 
 #- name: downloading {{ COMPONENT }} component & extracting zip file
 #  ansible.builtin.unarchive:
