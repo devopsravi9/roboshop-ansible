@@ -19,6 +19,7 @@
     src: http://172.31.8.168:8081/repository/{{ COMPONENT }}/{{ COMPONENT }}-{{ TAG_NAME }}/{{ COMPONENT }}-{{ TAG_NAME }}.zip
     creates: /home/roboshop/{{ COMPONENT }}
     remote_src: yes
+    dest: /home/roboshop/{{ COMPONENT }}
 
 #
 #- name: organizing the content
