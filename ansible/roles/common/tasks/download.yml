@@ -26,7 +26,7 @@
   when: TAG_NAME is undefined
 
 
-- name: downloading {{ COMPONENT }} component & extracting zip file
+- name: downloading latest {{ COMPONENT }} component & extracting zip file
   ansible.builtin.unarchive:
     src: http://172.31.8.168:8081/repository/{{ COMPONENT }}/{{ COMPONENT }}-{{ TAG.stdout }}.zip
     remote_src: yes
