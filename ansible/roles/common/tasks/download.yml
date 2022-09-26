@@ -27,7 +27,7 @@
 
 - name: downloading latest {{ COMPONENT }} component & extracting zip file
   ansible.builtin.unarchive:
-    src: http://172.31.8.168:8081/repository/{{ COMPONENT }}/{{ COMPONENT }}-{{ TAG.stdout }}.zip
+    src: http://172.31.8.168:8081/repository/{{ COMPONENT }}/{{ ENV }}-{{ COMPONENT }}-{{ TAG.stdout }}.zip
     remote_src: yes
     dest: "{{APP_LOCATION}}"
   when: TAG_NAME is undefined
@@ -35,7 +35,7 @@
 
 - name: downloading {{ COMPONENT }} component & extracting zip file
   ansible.builtin.unarchive:
-    src: http://172.31.8.168:8081/repository/{{ COMPONENT }}/{{ COMPONENT }}-{{ TAG_NAME }}.zip
+    src: http://172.31.8.168:8081/repository/{{ COMPONENT }}/{{ ENV }}-{{ COMPONENT }}-{{ TAG_NAME }}.zip
     remote_src: yes
     dest: "{{APP_LOCATION}}"
   when: TAG_NAME is defined
