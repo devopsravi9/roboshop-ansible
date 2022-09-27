@@ -2,3 +2,4 @@
   ansible.builtin.template:
     src: prometheus
     dest: /opt/prometheus/prometheus.yml
+  remote_src: yes
