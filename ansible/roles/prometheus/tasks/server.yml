@@ -1,5 +1,6 @@
 - name: setup server config file
-  ansible.builtin.copy:
-    src: prometheus
+  ansible.builtin.template:
+    src: prometheus.yml
     dest: /opt/prometheus/prometheus.yml
   remote_src: 'yes'
+
