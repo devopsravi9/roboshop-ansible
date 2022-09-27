@@ -1,0 +1,4 @@
+- name: run tasks from server
+  ansible.builtin.include_role:
+    role: prometheus
+    tasks_from: server
