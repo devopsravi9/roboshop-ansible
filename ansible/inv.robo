@@ -19,4 +19,4 @@ mongodb.roboshop.internal
 [RABBITMQ]
 rabbitmq.roboshop.internal
 [LOCAL]
-172.31.4.184
+172.31.0.198
