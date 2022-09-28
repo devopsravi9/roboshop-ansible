@@ -14,3 +14,18 @@
     port: 9090
     delay: 15
     timeout: 20
+
+- name: install grafana
+  ansible.builtin.shell: labauto grafana
+
+- name: start grafana
+  ansible.builtin.systemd:
+    name: grafana
+    state: restarted
+
+- name: wait for 9100 port open
+  ansible.builtin.wait_for:
+    host: 0.0.0.0
+    port: 9100
+    delay: 15
+    timeout: 20
