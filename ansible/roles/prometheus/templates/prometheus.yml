@@ -23,7 +23,7 @@ scrape_configs:
     port: 9090
     filters:
     - name: "tag:monitor"
-      value: "yes"
+      values: [ "yes" ]
   relabel_configs:
   - source_labels: [ __meta_ec2_instance_id ]
     target_label: instance_id

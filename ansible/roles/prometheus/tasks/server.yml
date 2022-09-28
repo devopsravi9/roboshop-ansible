@@ -12,5 +12,5 @@
   ansible.builtin.wait_for:
     host: 0.0.0.0
     port: 9090
-    delay: 10
-    timeout: 60
+    delay: 15
+    timeout: 20
