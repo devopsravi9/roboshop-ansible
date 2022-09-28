@@ -2,3 +2,10 @@
   ansible.builtin.include_role:
     name: prometheus
     tasks_from: server
+  when: SETUP_TYPE == "server"
+
+- name: run tasks from server
+  ansible.builtin.include_role:
+    name: prometheus
+    tasks_from: server
+  when: SETUP_TYPE == "client"

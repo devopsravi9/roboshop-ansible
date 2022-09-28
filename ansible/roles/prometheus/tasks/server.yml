@@ -3,8 +3,14 @@
     src: prometheus.yml
     dest: /opt/prometheus/prometheus.yml
 
+- name: start prometheus
+  ansible.builtin.systemd:
+    name: prometheus
+    state: restarted
 
-- name: prometheus server configuration
-  ansible.builtin.template:
-    src: prometheus.yml
-    dest: /opt/prometheus/prometheus.yml
+- name: wait for 9090 port open
+  ansible.builtin.wait_for:
+    host: 0.0.0.0
+    port: 9090
+    delay: 10
+    timeout: 60
