@@ -1,14 +1,12 @@
 - name: set hostname
   ansible.builtin.shell: set-hostname {{ COMPONENT }}
 
-
-- name: Install botocore & boto3 for AWS secret lookup
+- name: install python module for aws secret manager
   ansible.builtin.pip:
     name:
     - boto3
     - botocore
     executable: pip3
-  #when: SECRET_REQ is defined
 
 
 
