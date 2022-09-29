@@ -7,11 +7,6 @@
       - boto3
       - botocore
     executable: pip3
-  register: output
-
-- name: pip
-  debug:
-    msg: "{{ output }}"
 
 
 
