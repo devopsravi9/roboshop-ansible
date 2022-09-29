@@ -3,6 +3,12 @@
     src: prometheus.yml
     dest: /opt/prometheus/prometheus.yml
 
+- name: setup alerts config file
+  ansible.builtin.template:
+    src: alerts.yml
+    dest: /opt/prometheus/alerts.yml
+
+
 - name: start prometheus
   ansible.builtin.systemd:
     name: prometheus
