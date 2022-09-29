@@ -4,9 +4,13 @@
 - name: install python module for aws secret manager
   ansible.builtin.pip:
     name:
-    - boto3
-    - botocore
+      - boto3
+      - botocore
     executable: pip3
+  register: output
+
+- name: pip
+  debug: "{{ output }}"
 
 
 
