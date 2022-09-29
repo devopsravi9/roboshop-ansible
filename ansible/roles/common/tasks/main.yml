@@ -10,7 +10,8 @@
   register: output
 
 - name: pip
-  debug: "{{ output }}"
+  debug:
+    msg: "{{ output }}"
 
 
 
