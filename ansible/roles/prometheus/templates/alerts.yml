@@ -10,11 +10,14 @@ groups:
       summary: "Instance Down - [{{ $labels.instance}}]"
       description: "Instance Down - [{{ $labels.instance}}]"{% endraw %}
 
-  - alert : ServiceDown
-      expr : up == 0
+{% for component in components %}
+  - alert : ServiceDown-{{component}}.service
+      expr : node_systemd_unit_state{state="active", exported_name="{{component}}.service"} == 0
       for : 1m
       labels :
         severity : critical
       annotations : {% raw %}
         summary : "Instance Down - [{{ $labels.instance}}]"
         description : "Instance Down - [{{ $labels.instance}}]"{% endraw %}
+
+{% endfor %}
