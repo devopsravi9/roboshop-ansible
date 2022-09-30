@@ -37,10 +37,10 @@
     src: roboshop_conf
     dest: /etc/nginx/default.d/roboshop.conf
 
-- name: copy nginx conf file
-  ansible.builtin.template:
-    src: nginx.conf
-    dest: /etc/nginx/nginx.conf
+#- name: copy nginx conf file
+#  ansible.builtin.template:
+#    src: nginx.conf
+#    dest: /etc/nginx/nginx.conf
 
 - name: start frontend service
   ansible.builtin.systemd:
