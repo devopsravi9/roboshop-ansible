@@ -1,4 +1,4 @@
-- name: setup server config file
+- name: setup prometheus server config file
   ansible.builtin.template:
     src: prometheus.yml
     dest: /opt/prometheus/prometheus.yml
@@ -18,6 +18,23 @@
   ansible.builtin.wait_for:
     host: 0.0.0.0
     port: 9090
+    delay: 15
+    timeout: 20
+
+- name: setup alertmanager server config file
+  ansible.builtin.template:
+    src: alertmanager.yml
+    dest: /opt/alertmanager/alertmanager.yml
+
+- name: start alertmanager
+  ansible.builtin.systemd:
+    name: alertmanager
+    state: restarted
+
+- name: wait for 9090 port open
+  ansible.builtin.wait_for:
+    host: 0.0.0.0
+    port: 9093
     delay: 15
     timeout: 20
 
