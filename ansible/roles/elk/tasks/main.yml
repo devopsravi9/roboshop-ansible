@@ -4,8 +4,4 @@
     tasks_from: rsyslog.yml
   when: SETUP_TYPE == 'rsyslog'
 
-- name: tasks from filebeat
-  ansible.builtin.include_role:
-    role: elk
-    tasks_from: filebeats.yml
-  when: SETUP_TYPE == 'filebeat'
+
