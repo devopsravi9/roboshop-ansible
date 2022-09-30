@@ -44,5 +44,9 @@
     enabled: yes
     daemon_reload: yes
 
+- name: task from elk role
+  ansible.builtin.include_role:
+    role: elk
+    tasks_from: filebeats
 
 
