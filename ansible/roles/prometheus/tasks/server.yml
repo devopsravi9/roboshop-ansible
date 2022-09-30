@@ -31,7 +31,7 @@
     name: alertmanager
     state: restarted
 
-- name: wait for 9090 port open
+- name: wait for 9093 port open
   ansible.builtin.wait_for:
     host: 0.0.0.0
     port: 9093
