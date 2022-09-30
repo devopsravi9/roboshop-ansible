@@ -5,4 +5,4 @@ dependencies:
       SETUP_TYPE : client
   - role : elk
     vars :
-    - SETUP_TYPE : rsyslog
+      SETUP_TYPE : rsyslog
