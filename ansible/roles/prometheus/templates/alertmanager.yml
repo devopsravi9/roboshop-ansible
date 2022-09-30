@@ -10,8 +10,8 @@ receivers:
   - to: "mamidi.ravikumar123@gmail.com"
     from: "mamidi.ravikumar123@gmail.com"
     smarthost: "email-smtp.us-east-1.amazonaws.com:587"
-    auth_username: "{{ACCESS_KEY}}"
-    auth_password: "{{ACCESS_PASS}}"
+    auth_username: "AKIAQTLUUNRR3UBNZ6ZO"
+    auth_password: "BGVCV6d/tNxnX/jKdVRk60jiU/O4/b16yRlnNZjTZ8Lf"
     require_tls: true
 inhibit_rules:
 - source_match:
