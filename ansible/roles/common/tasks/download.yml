@@ -48,6 +48,10 @@
 #    remote_src: yes
 #    follow: yes
 
-
+- name: task from elk role
+  ansible.builtin.include_role:
+    role: elk
+  vars:
+    SETUP_TYPE: filebeat
 
 

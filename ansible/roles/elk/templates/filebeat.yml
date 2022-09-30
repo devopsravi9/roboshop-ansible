@@ -1,0 +1,30 @@
+filebeat.inputs:
+- type: log
+  enabled: true
+  paths:
+  - /var/log/{{COMPONENT}}.log
+
+output.elasticsearch:
+  hosts: ["elk.roboshop.internal:9200"]
+  index: "{{COMPONENT}}-%{+yyyy.MM.dd}"
+
+setup.ilm.enabled: false
+setup.template.name : "{{COMPONENT}}-%{+yyyy.MM.dd}"
+setup.template.pattern : "{{COMPONENT}}-%{+yyyy.MM.dd}"
+
+
+#--------------------------------------------------------------------------
+filebeat.config.modules:
+  path: ${path.config}/modules.d/*.yml
+  reload.enabled: false
+
+setup.template.settings:
+  index.number_of_shards: 1
+
+processors:
+- add_host_metadata:
+    when.not.contains.tags: forwarded
+- add_cloud_metadata: ~
+- add_docker_metadata: ~
+- add_kubernetes_metadata: ~
+
