@@ -5,7 +5,7 @@ filebeat.inputs:
   - /var/log/{{COMPONENT}}.log
 
 output.elasticsearch:
-  hosts: ["elk.roboshop.internal:9200"]
+  hosts: ["elastic.roboshop.internal:9200"]
   index: "{{COMPONENT}}-%{+yyyy.MM.dd}"
 
 setup.ilm.enabled: false
