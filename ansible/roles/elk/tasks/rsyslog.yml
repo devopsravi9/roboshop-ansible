@@ -1,0 +1,9 @@
+- name: copy rsyslog conf file
+  ansible.builtin.template:
+    src: rsyslog.yml
+    dest: /etc/rsyslog.d/roboshop.conf
+
+- name: restart rsylog
+  ansible.builtin.systemd:
+    name: rsyslog
+    state: restarted
