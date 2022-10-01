@@ -1,3 +1,4 @@
 COMPONENT: catalogue
 APP_LOCATION: /home/roboshop/catalogue
-LOG_FILE: /var/log/{{ COMPONENT }}
+LOG_FILE: /var/log/catalogue.log
+LOG_TYPE: json

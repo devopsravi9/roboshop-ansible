@@ -1,3 +1,4 @@
 COMPONENT: cart
 APP_LOCATION: /home/roboshop/cart
-LOG_FILE: /var/log/{{ COMPONENT }}
+LOG_FILE: /var/log/cart.log
+LOG_TYPE: json

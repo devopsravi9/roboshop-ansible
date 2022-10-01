@@ -1,3 +1,4 @@
 COMPONENT: user
 APP_LOCATION: /home/roboshop/user
-LOG_FILE: /var/log/{{ COMPONENT }}
+LOG_FILE: /var/log/user.log
+LOG_TYPE: json

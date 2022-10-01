@@ -36,3 +36,8 @@
   ansible.builtin.include_role:
     name: common
     tasks_from: systemd
+
+- name: task from elk role
+  ansible.builtin.include_role:
+    role: elk
+    tasks_from: filebeats

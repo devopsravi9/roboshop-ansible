@@ -1,18 +1,43 @@
 filebeat.inputs:
 - type: log
   enabled: true
+{% if LOG_TYPE == json %}
   json.keys_under_root: true
+{% endif %}
   paths: "{{ LOG_FILE }}"
+  fields:
+    env:  "{{ENV}}"
+    component: "{{COMPONENT}}"
 
+{% if COMPONENT == "shipping" %}
+  multiline.type: pattern
+  multiline.pattern: '^2'
+  multiline.negate: true
+  multiline.match: after
+{% endif %}
 
-output.elasticsearch:
-  hosts: ["elastic.roboshop.internal:9200"]
-  index: "{{COMPONENT}}-%{+yyyy.MM.dd}"
+{% if COMPONENT == "payment" %}
+  include_lines: ['^\[2']
+{% endif %}
 
-setup.ilm.enabled: false
+#{% if COMPONENT == "frontend" %}
+#  exclude_lines: ['//api/ratings*']
+#{% endif %}
+
+{% if LOG_TYPE == "json" %}
+output.elasticsearch :
+  hosts : [ "elastic.roboshop.internal:9200" ]
+  index : "{{COMPONENT}}-%{+yyyy.MM.dd}"
+
+setup.ilm.enabled : false
 setup.template.name : "{{COMPONENT}}-%{+yyyy.MM.dd}"
-setup.template.pattern : "{{COMPONENT}}-%{+yyyy.MM.dd}"
+setup.template.pattern : "{{COMPONENT}}-%{+yyyy.MM.dd}"Kenny is sick.
+{% endif %}
 
+{% if LOG_TYPE == "raw" %}
+output.logstash:
+  hosts: ["logstash.roboshop.internal:5044"]
+{% endif %}
 
 #--------------------------------------------------------------------------
 filebeat.config.modules:
