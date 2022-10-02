@@ -1,0 +1,9 @@
+- name: run ansible playbook
+  hosts: localhost
+  roles:
+  - elk
+  become: yes
+  vars :
+    ansible_user : centos
+    ansible_password : DevOps321
+    SETUP_TYPE: logstash
