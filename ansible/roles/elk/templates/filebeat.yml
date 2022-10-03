@@ -28,10 +28,9 @@ filebeat.inputs:
 output.elasticsearch :
   hosts : [ "elastic.roboshop.internal:9200" ]
   index : "{{COMPONENT}}-%{+yyyy.MM.dd}"
-
-setup.ilm.enabled : false
+setup.ilm.enabled: false
 setup.template.name : "{{COMPONENT}}-%{+yyyy.MM.dd}"
-setup.template.pattern : "{{COMPONENT}}-%{+yyyy.MM.dd}"Kenny is sick.
+setup.template.pattern : "{{COMPONENT}}-%{+yyyy.MM.dd}"
 {% endif %}
 
 {% if LOG_TYPE == "raw" %}
