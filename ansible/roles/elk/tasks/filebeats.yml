@@ -11,7 +11,7 @@
 
 - name: copy filebeat conf file
   ansible.builtin.template:
-    src: filebeat.yml
+    src: newfilebeat.yml
     dest: /etc/filebeat/filebeat.yml
   when: result is succeeded
 
@@ -19,5 +19,7 @@
   ansible.builtin.systemd:
     name: filebeat
     state: restarted
+
+
 
 
