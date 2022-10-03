@@ -1,13 +1,17 @@
 filebeat.inputs:
 - type: log
   enabled: true
+  json.keys_under_root: true
   paths:
   - /var/log/cart.log
 
 
 output.elasticsearch:
   hosts: ["elastic.roboshop.internal:9200"]
-
+  index : "{{COMPONENT}}-%{+yyyy.MM.dd}"
+setup.ilm.enabled : false
+setup.template.name : "{{COMPONENT}}-%{+yyyy.MM.dd}"
+setup.template.pattern : "{{COMPONENT}}-%{+yyyy.MM.dd}"Kenny is sick.
 
 #------------------------------------------------
 filebeat.config.modules:
