@@ -26,6 +26,7 @@
     owner: roboshop
     group: roboshop
   when: DOCDB_ENDPOINT != "null"
+  ignore_errors: yes
 
 - name: run tasks from common role
   ansible.builtin.include_role:
