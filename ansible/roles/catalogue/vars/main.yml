@@ -2,3 +2,5 @@ COMPONENT: catalogue
 APP_LOCATION: /home/roboshop/catalogue
 LOG_FILE: /var/log/catalogue.log
 LOG_TYPE: json
+DOCDB_USER: "{{SECRETS.DOCDB_USER}}"
+DOCDB_PASS: "{{SECRETS.DOCDB_PASS}}"
