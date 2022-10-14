@@ -18,6 +18,15 @@
 #  community.general.npm:
 #    path: /home/roboshop/{{ COMPONENT }}
 
+- name: download DOCDB pem file
+  ansible.builtin.get_url:
+    url: https://s3.amazonaws.com/rds-downloads/rds-combined-ca-bundle.pem
+    dest: /home/roboshop/{{COMPONENT}}/rds-combined-ca-bundle.pem
+    mode: '0400'
+    owner: roboshop
+    group: roboshop
+  when: DOCDB_ENDPOINT != "null"
+
 - name: run tasks from common role
   ansible.builtin.include_role:
     name: common
