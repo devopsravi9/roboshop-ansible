@@ -40,6 +40,14 @@
 #    dest: "{{APP_LOCATION}}"
 #  when: TAG_NAME is defined
 
+- name: unzip {{ COMPONENT }} component from local
+  ansible.builtin.unarchive:
+    src: "/tmp/{{COMPONENT}}.zip"
+    remote_src: yes
+    dest: "{{APP_LOCATION}}"
+
+
+
 
 #
 #- name: organizing the content
