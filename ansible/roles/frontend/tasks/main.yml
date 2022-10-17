@@ -42,12 +42,12 @@
     src: nginx.conf
     dest: /etc/nginx/nginx.conf
 
-- name: start frontend service
-  ansible.builtin.systemd:
-    name: nginx
-    state: restarted
-    enabled: yes
-    daemon_reload: yes
+#- name: start frontend service
+#  ansible.builtin.systemd:
+#    name: nginx
+#    state: restarted
+#    enabled: yes
+#    daemon_reload: yes
 
 - name: task from elk role
   ansible.builtin.include_role:
