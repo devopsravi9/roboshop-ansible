@@ -1,0 +1,11 @@
+- name: Template a terraform code
+  ansible.builtin.template:
+    src: /templates/terraform.tf
+    dest: /home/centos/main.tf
+
+- name: run terraform code
+  ansible.builtin.shell: |
+    cd /home/centos
+    terraform init
+    terraform plan
+    terraform apply -auto-approve

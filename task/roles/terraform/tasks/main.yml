@@ -15,8 +15,3 @@
   ansible.builtin.template:
     src: /templates/credentials
     dest: ~/.aws/credentials
-
-- name: Read-write git checkout from github
-  ansible.builtin.git:
-    repo: git@github.com:mylogin/hello.git
-    dest: /home/mylogin/hello
