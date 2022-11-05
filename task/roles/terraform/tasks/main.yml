@@ -13,11 +13,11 @@
 
 - name: Creating an empty file
   ansible.builtin.file:
-    path: home/centos/.aws/credentials
+    path: /home/centos/.aws/credentials
     state: touch
 
 - name: Template a file to ~/.aws/credentials
   ansible.builtin.template:
     src: credentials
-    dest: home/centos/.aws/credentials
+    dest: /home/centos/.aws/credentials
 
