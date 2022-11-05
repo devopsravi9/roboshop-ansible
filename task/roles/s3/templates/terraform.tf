@@ -14,3 +14,10 @@ resource "null_resource" "copy" {
         command = "aws s3 cp main.tf s3://task-970141/task"
     }
 }
+
+resource "aws_s3_object" "object" {
+  bucket = "task-970141"
+  key    = "task/main.tf"
+  source = "~/roboshop-ansible/task/main.tf"
+  etag = filemd5("~/roboshop-ansible/task/main.tf")
+}
