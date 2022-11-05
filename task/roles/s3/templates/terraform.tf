@@ -15,9 +15,9 @@ resource "aws_s3_bucket" "task" {
 //    }
 //}
 //
-//resource "aws_s3_object" "object" {
-//  bucket = "task-970141"
-//  key    = "task/main.tf"
-//  source = "~/roboshop-ansible/task/main.tf"
-//  etag = filemd5("~/roboshop-ansible/task/main.tf")
-//}
+resource "aws_s3_object" "object" {
+  bucket = "task-970141"
+  key    = "task/main.tf"
+  source = "/home/centos/roboshop-ansible/task/main.tf"
+  etag = filemd5("/home/centos/roboshop-ansible/task/main.tf")
+}
