@@ -11,7 +11,8 @@
   register: output
 
 - name: see output
-  msg: "{{output}}"
+  debug:
+    msg: "{{output}}"
 
 
 - name: run terraform code
