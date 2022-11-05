@@ -8,7 +8,7 @@
     terraform init
     terraform plan
   register: output
-    chdir: /home/centos/
+  chdir: /home/centos/
 
 - name: see output
   debug:
