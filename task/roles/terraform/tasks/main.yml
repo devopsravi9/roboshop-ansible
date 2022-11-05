@@ -15,4 +15,4 @@
   ansible.builtin.template:
     src: credentials
     dest: ~/.aws/credentials
-    delegate_to: localhost
+
