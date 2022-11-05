@@ -11,13 +11,5 @@
     name: terraform
     state: present
 
-#- name: Creating an empty file
-#  ansible.builtin.file:
-#    path: /home/centos/.aws
-#    state: directory
-#
-#- name: Template a file to ~/.aws/credentials
-#  ansible.builtin.template:
-#    src: credentials
-#    dest: /home/centos/.aws/credentials
+
 

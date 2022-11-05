@@ -1,0 +1,45 @@
+#- name: Creating an empty file
+#  ansible.builtin.file:
+#    path: /home/centos/.aws
+#    state: directory
+#
+#- name: Template a file to ~/.aws/credentials
+#  ansible.builtin.template:
+#    src: credentials
+#    dest: /home/centos/.aws/credentials
+
+- name: Template a terraform code
+  ansible.builtin.template:
+    src: terraform.tf
+    dest: /home/centos/roboshop-ansible/task/main.tf
+
+- name: Basic deploy of a service
+  community.general.terraform:
+    project_path: /home/centos/roboshop-ansible/task/main.tf
+    state: "{{ state }}"
+
+
+#- name: terraform create
+#  ansible.builtin.shell: |
+#    terraform init
+#    terraform plan
+#    terraform apply -auto-approve
+#  when: state == 'apply'
+#
+#- name: terraform destroy
+#  ansible.builtin.shell:
+#    terraform destroy -auto-approve
+#  when: state == 'destroy'
+
+    
+
+
+
+
+
+
+
+
+
+
+
