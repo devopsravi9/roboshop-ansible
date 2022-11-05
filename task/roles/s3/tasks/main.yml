@@ -4,10 +4,12 @@
     dest: /home/centos/main.tf
 
 - name: run terraform code
-  ansible.builtin.shell: |
-    terraform init
-    terraform plan
-  chdir: /home/centos/
+  ansible.builtin.shell:
+    chdir: /home/centos/
+    cmd: |
+      terraform init
+      terraform plan
+  
 
 
 
