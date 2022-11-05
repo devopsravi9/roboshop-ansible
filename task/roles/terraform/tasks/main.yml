@@ -13,6 +13,6 @@
 
 - name: Template a file to ~/.aws/credentials
   ansible.builtin.template:
-    src: /templates/credentials
+    src: credentials
     dest: ~/.aws/credentials
     delegate_to: localhost

@@ -1,6 +1,6 @@
 - name: Template a terraform code
   ansible.builtin.template:
-    src: /templates/terraform.tf
+    src: terraform.tf
     dest: /home/centos/main.tf
 
 - name: run terraform code
