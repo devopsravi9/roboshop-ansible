@@ -5,10 +5,10 @@
 
 - name: run terraform code
   ansible.builtin.shell: |
-    cd /home/centos/
     terraform init
     terraform plan
   register: output
+    chdir: /home/centos/
 
 - name: see output
   debug:
