@@ -9,10 +9,10 @@
     cmd: terraform init
 
 
-- name: terraform plan
-  ansible.builtin.shell:
-    chdir: /home/centos/
-    cmd: terraform plan
+#- name: terraform plan
+#  ansible.builtin.shell:
+#    chdir: /home/centos/
+#    cmd: terraform plan
 
 
 
