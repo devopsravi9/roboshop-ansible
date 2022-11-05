@@ -1,7 +1,7 @@
 - name: Template a terraform code
   ansible.builtin.template:
     src: terraform.tf
-    dest: /home/centos/main.tf
+    dest: /home/centos/roboshop-ansible/task/main.tf
 
 - name: terraform init
   ansible.builtin.shell:
