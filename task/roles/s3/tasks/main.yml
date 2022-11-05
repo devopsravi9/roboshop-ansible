@@ -6,10 +6,13 @@
 - name: run terraform code
   ansible.builtin.shell:
     chdir: /home/centos/
-    cmd: |
-      terraform init
-      terraform plan
-  
+    cmd: terraform init
+
+
+- name: run terraform code
+  ansible.builtin.shell:
+    chdir: /home/centos/
+    cmd: terraform plan
 
 
 
