@@ -2,5 +2,4 @@
   hosts: localhost
   become: yes
   roles:
-  - terraform
   - s3
