@@ -5,7 +5,15 @@
 
 - name: run terraform code
   ansible.builtin.shell: |
-    cd /home/centos
+    cd /home/centos/
     terraform init
     terraform plan
+  register: output
+
+- name: see output
+  msg: "{{output}}"
+
+
+- name: run terraform code
+  ansible.builtin.shell:
     terraform apply -auto-approve
