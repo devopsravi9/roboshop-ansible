@@ -13,26 +13,26 @@
     src: terraform.tf
     dest: /home/centos/roboshop-ansible/task/main.tf
 
-#- name: Basic deploy of a service
-#  community.general.terraform:
-#    project_path: /home/centos/roboshop-ansible/task/main.tf
-#    state: "{{ state }}"
+- name: Basic deploy of a service
+  community.general.terraform:
+    project_path: /home/centos/roboshop-ansible/task
+    state: "{{ state }}"
 
-- name: terraform init
-  ansible.builtin.shell:  terraform init
-
-
-- name: terraform plan
-  ansible.builtin.shell:  terraform plan
-
-
-- name: terraform apply -auto-approve
-  ansible.builtin.shell:  terraform apply -auto-approve
-  when: state == 'apply'
-
-- name: terraform destroy
-  ansible.builtin.shell: terraform destroy -auto-approve
-  when: state == 'destroy'
+#- name: terraform init
+#  ansible.builtin.shell:  terraform init
+#
+#
+#- name: terraform plan
+#  ansible.builtin.shell:  terraform plan
+#
+#
+#- name: terraform apply -auto-approve
+#  ansible.builtin.shell:  terraform apply -auto-approve
+#  when: state == 'apply'
+#
+#- name: terraform destroy
+#  ansible.builtin.shell: terraform destroy -auto-approve
+#  when: state == 'destroy'
 
 
 
