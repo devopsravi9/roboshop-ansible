@@ -8,14 +8,14 @@
 #    src: credentials
 #    dest: /home/centos/.aws/credentials
 
-- name: Template a terraform code
-  ansible.builtin.template:
-    src: terraform.tf
-    dest: /home/centos/roboshop-ansible/task/main.tf
+#- name: Template a terraform code
+#  ansible.builtin.template:
+#    src: terraform.tf
+#    dest: /home/centos/roboshop-ansible/task/main.tf
 
 - name: Basic deploy of a service
   community.general.terraform:
-    project_path: /home/centos/roboshop-ansible/task/
+    project_path: /home/centos/roboshop-ansible/task/s3
     state: "{{ state }}"
 
 #- name: terraform init
