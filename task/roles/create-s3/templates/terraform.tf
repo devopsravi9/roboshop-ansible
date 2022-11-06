@@ -1,7 +1,7 @@
 provider "aws" {
   region     = "us-east-1"
-  access_key = "{{AWS_ACCESS_KEY}}"
-  secret_key = "{{AWS_SECRET_KEY}}"
+  access_key = "{{SECRETS.aws_access_key}}"
+  secret_key = "{{SECRETS.aws_secret_key}}"
 }
 
 resource "aws_s3_bucket" "task" {
