@@ -1,6 +1,3 @@
-provider "aws" {
-  region     = "us-east-1"
- }
 
 resource "aws_s3_bucket" "task" {
   bucket = "task-970141"
@@ -10,8 +7,7 @@ resource "aws_s3_bucket" "task" {
 }
 
 
-//access_key = "{{SECRETS.aws_access_key}}"
-//secret_key = "{{SECRETS.aws_secret_key}}"
+
 //resource "null_resource" "copy" {
 //    provisioner "local-exec" {
 //        command = "aws s3 cp main.tf s3://task-970141/task"
