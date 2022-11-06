@@ -9,7 +9,7 @@
 
 - name : see output
   ansible.builtin.debug:
-    msg: "{{output.stdout}}"
+    msg: "{{output}}"
   when: state == 'apply'
 
 - name: Basic deploy of a service
