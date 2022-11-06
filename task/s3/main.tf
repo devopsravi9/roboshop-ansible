@@ -9,11 +9,6 @@ resource "aws_s3_bucket" "private_bucket" {
   }
 }
 
-resource "aws_s3_bucket_acl" "private_bucket" {
-  bucket = aws_s3_bucket.private_bucket.id
-  acl    = "private"
-}
-
 resource "aws_s3_bucket_public_access_block" "example" {
   bucket = aws_s3_bucket.private_bucket.id
 
@@ -31,9 +26,3 @@ resource "aws_s3_bucket_public_access_block" "example" {
 //    }
 //}
 //
-//resource "aws_s3_object" "object" {
-//  bucket = "task-970141"
-//  key    = "task/main.tf"
-//  source = "/home/centos/roboshop-ansible/task/main.tf"
-//  etag = filemd5("/home/centos/roboshop-ansible/task/main.tf")
-//}
