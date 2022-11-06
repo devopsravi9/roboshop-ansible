@@ -20,11 +20,10 @@
 
 - name: terraform init
   ansible.builtin.shell:  terraform init
-    terraform init
+
 
 - name: terraform plan
   ansible.builtin.shell:  terraform plan
-    terraform init
 
 
 - name: terraform apply -auto-approve
