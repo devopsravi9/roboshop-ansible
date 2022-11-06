@@ -12,10 +12,6 @@ resource "aws_s3_bucket" "task" {
 }
 
 
-resource "aws_s3_bucket_acl" "example" {
-  bucket = aws_s3_bucket.task.id
-  acl    = "private"
-}
 
 
 
