@@ -1,9 +1,17 @@
+provider "aws" {
+  region     = "us-east-1"
+}
 
-resource "aws_s3_bucket" "task" {
-  bucket = "task-970141"
+resource "aws_s3_bucket" "private_bucket" {
+  bucket = "task-999888"
   tags = {
     Name = "task"
   }
+}
+
+resource "aws_s3_bucket_acl" "private_bucket" {
+  bucket = aws_s3_bucket.private_bucket.id
+  acl    = "private"
 }
 
 
