@@ -1,4 +1,4 @@
 - name: ansible role
   hosts: localhost
   become: yes
-  roles: {{ROLE}}
+  roles: "{{ROLE}}"
