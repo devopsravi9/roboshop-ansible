@@ -18,6 +18,7 @@ resource "aws_s3_bucket_acl" "example" {
 }
 
 
+
 //resource "null_resource" "copy" {
 //    provisioner "local-exec" {
 //        command = "aws s3 cp main.tf s3://task-970141/task"
