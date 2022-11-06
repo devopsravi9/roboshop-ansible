@@ -27,7 +27,7 @@
 
 
 - name: terraform apply -auto-approve
-  ansible.builtin.shell:  terraform apply -auto-approve -lock=false
+  ansible.builtin.shell:  terraform apply -auto-approve
   when: state == 'apply'
 
 - name: terraform destroy
