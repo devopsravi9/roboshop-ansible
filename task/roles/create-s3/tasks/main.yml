@@ -10,7 +10,7 @@
 
 #- name: Template a terraform code
 #  ansible.builtin.template:
-#    src: terraform.tf
+#    src: main.tf
 #    dest: /home/centos/roboshop-ansible/task/main.tf
 
 - name: Basic deploy of a service
