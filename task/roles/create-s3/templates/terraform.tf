@@ -1,7 +1,7 @@
 provider "aws" {
   region     = "us-east-1"
-  access_key = "{{SECRETS.aws_access_key}}"
-  secret_key = "{{SECRETS.aws_secret_key}}"
+  //access_key = "{{SECRETS.aws_access_key}}"
+  //secret_key = "{{SECRETS.aws_secret_key}}"
 }
 
 resource "aws_s3_bucket" "task" {
@@ -10,10 +10,6 @@ resource "aws_s3_bucket" "task" {
     Name = "task"
   }
 }
-
-
-
-
 
 //resource "null_resource" "copy" {
 //    provisioner "local-exec" {

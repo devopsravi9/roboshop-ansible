@@ -15,7 +15,7 @@
 
 - name: Basic deploy of a service
   community.general.terraform:
-    project_path: /home/centos/roboshop-ansible/task
+    project_path: /home/centos/roboshop-ansible/task/
     state: "{{ state }}"
 
 #- name: terraform init
