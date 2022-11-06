@@ -1,8 +1,0 @@
-- name: check
-  ansible.builtin.debug:
-    msg: echo {{ SECRETS  }}
-    register: out
-
-- name: output
-  debug:
-    msg: "{{out}}"
