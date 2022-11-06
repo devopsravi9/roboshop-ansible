@@ -1,8 +1,7 @@
 
 
-- name: exicuting terraform coomands
+- name:  terraform apply
   community.general.terraform:
-    force_init: true
     project_path: /home/centos/roboshop-ansible/task/{{ path }}
     state: "{{ state }}"
 
