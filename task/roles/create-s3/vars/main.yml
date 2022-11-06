@@ -1,4 +1,0 @@
-#AWS_ACCESS_KEY:  AKIAQTLUUNRRWYHVYIRD
-#AWS_SECRET_KEY: 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
-
-#SECRETS: "{{ lookup('amazon.aws.aws_secret', 'roboshop',  region='us-east-1' ) }}"
