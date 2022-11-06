@@ -18,17 +18,21 @@
 #    project_path: /home/centos/roboshop-ansible/task/main.tf
 #    state: "{{ state }}"
 
-
-- name: terraform create
-  ansible.builtin.shell: |
+- name: terraform init
+  ansible.builtin.shell:  terraform init
     terraform init
-    terraform plan
-    terraform apply -auto-approve
+
+- name: terraform plan
+  ansible.builtin.shell:  terraform plan
+    terraform init
+
+
+- name: terraform apply -auto-approve
+  ansible.builtin.shell:  terraform apply -auto-approve
   when: state == 'apply'
 
 - name: terraform destroy
-  ansible.builtin.shell:
-    terraform destroy -auto-approve
+  ansible.builtin.shell: terraform destroy -auto-approve
   when: state == 'destroy'
 
 
