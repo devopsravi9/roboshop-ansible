@@ -9,7 +9,7 @@
 
 - name : see output
   ansible.builtin.debug:
-    msg: "{{output}}"
+    msg: "{{output.stdout}}"
 
 
 - name: Basic deploy of a service
@@ -17,6 +17,10 @@
     project_path: /home/centos/roboshop-ansible/task/s3
     state: absent
   when: state == 'destroy'
+
+- name : see output
+  ansible.builtin.debug:
+    msg: "{{output.stdout}}"
 
 
 
