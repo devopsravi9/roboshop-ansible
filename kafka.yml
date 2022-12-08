@@ -14,7 +14,7 @@
   - name: copy kafka service
     copy: 
       src: /backup/kafka/kafka.service
-      dest: /appserver/kafka/kafka.service
+      dest: /etc/systemd/system/kafka.service
       
   - name: systemctl reload
     become: yes
