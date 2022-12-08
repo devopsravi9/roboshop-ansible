@@ -5,6 +5,8 @@
     shell:
       mkdir -p /appserver/kafka/kafka-stgl/data
       mkdir -p /appserver/zookeeper/zookeeper/zookeeper-stgl/data
+      chown -R centos:centos /appserver/kafka/kafka-stgl
+      chown -R centos:centos /appserver
       
   - name: unarchive tar file
     unarchive:
