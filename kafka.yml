@@ -1,0 +1,31 @@
+- hosts: localhost
+  become: yes
+  tasks:
+  - name: create data folder
+    shell:
+      mkdir -p /appserver/kafka/kafka-stgl/data
+      mkdir -p /appserver/zookeeper/zookeeper/zookeeper-stgl/data
+      chown -R centos:centos /appserver/kafka/kafka-stgl
+      chown -R centos:centos /appserver
+      
+  - name: unarchive tar file
+    unarchive:
+      src: /backup/kafka/kafka_2.13-3.3.1.tgz
+      dest: /appserver/kafka/kafka-stgl
+      
+  - name: copy kafka service
+    copy: 
+      src: /backup/kafka/kafka.service
+      dest: /etc/systemd/system/kafka.service
+      
+  - name: systemctl reload
+    become: yes
+    systemd:
+      daemon_reload: yes
+    
+  - name: start service
+    become: yes
+    systemd: 
+      name: kafka
+      state: started
+      
