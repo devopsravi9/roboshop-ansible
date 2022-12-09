@@ -1,38 +1,10 @@
 
-
 - name:  terraform apply
   community.general.terraform:
     project_path: /home/centos/roboshop-ansible/task/{{ path }}
     state: "{{ state }}"
 
 
-
-
-
-
-
-
-
-
-#  when: state == 'apply'
-#  register: output
-#
-#- name : see output
-#  ansible.builtin.debug:
-#    msg: "{{output}}"
-#  when: state == 'apply'
-#
-#- name: Basic deploy of a service
-#  community.general.terraform:
-#    project_path: /home/centos/roboshop-ansible/task/s3
-#    state: absent
-#  when: state == 'destroy'
-#  register: output1
-#
-#- name : see output
-#  ansible.builtin.debug:
-#    msg: "{{output1}}"
-#  when: state == 'destroy'
 
 
 

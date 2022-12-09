@@ -1,0 +1,36 @@
+- hosts: localhost
+  become: yes
+  tasks:
+
+  - name: Extract tar file
+    ansible.builtin.unarchive:
+      src: /home/raj/kafka.tgz
+      dest: /home/raj
+      owner: raj
+      group: raj
+
+  - name: rename tar file
+    shell: mv /home/raj/kafka_2.11-2.1.1 /home/raj/kafka
+
+  - name: add a line in file
+    ansible.builtin.lineinfile:
+      path: /home/raj/kafka/config/server.properties
+      #insertafter: "^group.initial.rebalance.delay.ms"
+      line: "delete.topic.enable = true"
+      state: present
+
+  - name: copy zookeeper service file
+    ansible.builtin.copy:
+      src: templates/zookeeper.service
+      dest: /etc/systemd/system/zookeeper.service
+
+  - name: copy kafka service file
+    ansible.builtin.copy:
+      src: templates/kafka.service
+      dest: /etc/systemd/system/kafka.service
+
+  - name: start kafka service
+    ansible.builtin.systemd:
+      state: restarted
+      daemon_reload: yes
+      name: kafka
