@@ -7,7 +7,7 @@ After=network.target remote-fs.target
 Type=simple
 User={{ USER }}
 ExecStart="{{ FILE_PATH }}/kafka/bin/zookeeper-server-start.sh {{ FILE_PATH }}/kafka/config/zookeeper.properties"
-ExecStop={{ FILE_PATH }}/kafka/bin/zookeeper-server-stop.sh
+ExecStop="{{ FILE_PATH }}/kafka/bin/zookeeper-server-stop.sh"
 Restart=on-abnormal
 
 [Install]

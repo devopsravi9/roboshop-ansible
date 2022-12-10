@@ -22,7 +22,7 @@
 
 - name: remove old content
   ansible.builtin.file:
-    path: {{ FILE_PATH }}/kafka
+    path: "{{ FILE_PATH }}/kafka"
     state: absent
   ignore_errors: yes
 
@@ -41,11 +41,11 @@
 - name: copy kafka service file
   ansible.builtin.template:
     src: templates/server.properties
-    dest: {{ FILE_PATH }}/kafka/config/server.properties
+    dest: "{{ FILE_PATH }}/kafka/config/server.properties"
 
 - name: configuring zookeeper
   ansible.builtin.replace:
-    path: {{ FILE_PATH }}/kafka/config/zookeeper.properties
+    path: "{{ FILE_PATH }}/kafka/config/zookeeper.properties"
     regexp: 'clientPort=2181'
     replace: "clientPort={{ ZOOKEEPER_PORT }}"
 
