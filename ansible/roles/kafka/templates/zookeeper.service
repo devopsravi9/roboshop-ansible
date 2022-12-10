@@ -1,4 +1,5 @@
 [Unit]
+Description=Apache Zookeeper Server
 Requires=network.target remote-fs.target
 After=network.target remote-fs.target
 
