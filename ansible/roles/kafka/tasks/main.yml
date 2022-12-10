@@ -3,7 +3,7 @@
 
 - name: Install JRE after apt update
   become: yes
-  apt:
+  ansible.builtin.apt:
     name: default-jre
     state: present
 
@@ -38,7 +38,7 @@
     - zookeeper
     - kafka
 
-- name: copy kafka service file
+- name: copy server.properties file
   ansible.builtin.template:
     src: templates/server.properties
     dest: "{{ FILE_PATH }}/kafka/config/server.properties"
