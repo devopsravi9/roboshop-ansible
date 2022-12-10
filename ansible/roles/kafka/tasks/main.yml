@@ -26,7 +26,7 @@
     state: absent
   ignore_errors: yes
 
-- name: rename tar file
+- name: rename the file
   shell: mv /home/{{ USER }}/kafka_2.11-2.1.1 /home/{{ USER }}/kafka
 
 - name: copy zookeeper service file
@@ -42,6 +42,12 @@
   ansible.builtin.template:
     src: templates/server.properties
     dest: /home/{{ USER }}/kafka/config/server.properties
+
+- name: configuring redis
+  ansible.builtin.replace:
+    path: /home/{{ USER }}/kafka/config/zookeeper.properties
+    regexp: 'clientPort'
+    replace: "clientPort={{ ZOOKEEPER_PORT }}"
 
 - name: start kafka service
   become: yes
