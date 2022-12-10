@@ -43,10 +43,10 @@
     src: templates/server.properties
     dest: /home/{{ USER }}/kafka/config/server.properties
 
-- name: configuring redis
+- name: configuring zookeeper
   ansible.builtin.replace:
     path: /home/{{ USER }}/kafka/config/zookeeper.properties
-    regexp: 'clientPort'
+    regexp: 'clientPort=2181'
     replace: "clientPort={{ ZOOKEEPER_PORT }}"
 
 - name: start kafka service
