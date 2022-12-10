@@ -12,6 +12,7 @@
     shell: rm -rf /home/{{ USER }}/kafka && mv /home/{{ USER }}/kafka_2.11-2.1.1 /home/{{ USER }}/kafka
 
   - name: copy zookeeper service file
+    become: yes
     ansible.builtin.template:
       src: templates/{{ item }}.service
       dest: /etc/systemd/system/{{ item }}.service
