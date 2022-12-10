@@ -10,7 +10,7 @@
       group: raj
 
   - name: rename tar file
-    shell: mv /home/raj/kafka_2.11-2.1.1 /home/raj/kafka
+    shell: rm -rf /home/raj/kafka && mv /home/raj/kafka_2.11-2.1.1 /home/raj/kafka
 
   - name: add a line in file
     ansible.builtin.lineinfile:
