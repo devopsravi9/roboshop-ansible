@@ -1,0 +1,33 @@
+#- hosts: localhost
+#  tasks:
+
+  - name: Extract tar file
+    ansible.builtin.unarchive:
+      src: /home/{{ USER }}/kafka.tgz
+      dest: /home/{{ USER }}
+      owner: {{ USER }}
+      group: {{ USER }}
+
+  - name: rename tar file
+    shell: rm -rf /home/{{ USER }}/kafka && mv /home/{{ USER }}/kafka_2.11-2.1.1 /home/{{ USER }}/kafka
+
+  - name: copy zookeeper service file
+    ansible.builtin.template:
+      src: templates/{{ item }}.service
+      dest: /etc/systemd/system/{{ item }}.service
+    loop:
+      - zookeeper
+      - kafka
+
+  - name: copy kafka service file
+    ansible.builtin.template:
+      src: templates/server.properties
+      dest: /home/{{ USER }}/kafka/config/server.properties
+
+  - name: start kafka service
+    become: yes
+    ansible.builtin.systemd:
+      state: restarted
+      daemon_reload: yes
+      name: kafka
+
