@@ -7,7 +7,7 @@ After=zookeeper.service
 Type=simple
 User={{ USER }}
 Environment="JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64"
-ExecStart=/bin/sh -c {{ FILE_PATH }}/kafka/bin/kafka-server-start.sh {{ FILE_PATH }}/kafka/config/server.properties > {{ FILE_PATH }}/kafka/kafka.log 2>&1
+ExecStart=/bin/sh -c "{{ FILE_PATH }}/kafka/bin/kafka-server-start.sh {{ FILE_PATH }}/kafka/config/server.properties > {{ FILE_PATH }}/kafka/kafka.log 2>&1"
 ExecStop={{ FILE_PATH }}/kafka/bin/kafka-server-stop.sh
 Restart=on-abnormal
 
