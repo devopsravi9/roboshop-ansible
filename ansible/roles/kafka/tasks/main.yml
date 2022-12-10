@@ -5,8 +5,8 @@
     ansible.builtin.unarchive:
       src: /home/{{ USER }}/kafka.tgz
       dest: /home/{{ USER }}
-      owner: {{ USER }}
-      group: {{ USER }}
+      owner: "{{ USER }}"
+      group: "{{ USER }}"
 
   - name: rename tar file
     shell: rm -rf /home/{{ USER }}/kafka && mv /home/{{ USER }}/kafka_2.11-2.1.1 /home/{{ USER }}/kafka
