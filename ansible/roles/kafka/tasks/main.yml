@@ -16,18 +16,18 @@
 - name: Extract tar file
   ansible.builtin.unarchive:
     src: /home/{{ USER }}/kafka.tgz
-    dest: /home/{{ USER }}
+    dest: "{{ FILE_PATH }}"
     owner: "{{ USER }}"
     group: "{{ USER }}"
 
 - name: remove old content
   ansible.builtin.file:
-    path: /home/{{ USER }}/kafka
+    path: {{ FILE_PATH }}/kafka
     state: absent
   ignore_errors: yes
 
 - name: rename the file
-  shell: mv /home/{{ USER }}/kafka_2.11-2.1.1 /home/{{ USER }}/kafka
+  shell: mv {{ FILE_PATH }}/kafka_2.11-2.1.1 {{ FILE_PATH }}/kafka
 
 - name: copy zookeeper service file
   become: yes
@@ -41,11 +41,11 @@
 - name: copy kafka service file
   ansible.builtin.template:
     src: templates/server.properties
-    dest: /home/{{ USER }}/kafka/config/server.properties
+    dest: {{ FILE_PATH }}/kafka/config/server.properties
 
 - name: configuring zookeeper
   ansible.builtin.replace:
-    path: /home/{{ USER }}/kafka/config/zookeeper.properties
+    path: {{ FILE_PATH }}/kafka/config/zookeeper.properties
     regexp: 'clientPort=2181'
     replace: "clientPort={{ ZOOKEEPER_PORT }}"
 
