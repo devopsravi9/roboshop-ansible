@@ -1,5 +1,5 @@
 - hosts: localhost
-  become: yes
+  # become: yes
   tasks:
 
   - name: Extract tar file
@@ -20,16 +20,19 @@
       state: present
 
   - name: copy zookeeper service file
+    #become: yes
     ansible.builtin.copy:
       src: templates/zookeeper.service
       dest: /etc/systemd/system/zookeeper.service
 
   - name: copy kafka service file
+    #become: yes
     ansible.builtin.copy:
       src: templates/kafka.service
       dest: /etc/systemd/system/kafka.service
 
   - name: start kafka service
+    become: yes
     ansible.builtin.systemd:
       state: restarted
       daemon_reload: yes
