@@ -20,8 +20,14 @@
     owner: "{{ USER }}"
     group: "{{ USER }}"
 
+- name: remove old content
+  ansible.builtin.file:
+    path: /home/{{ USER }}/kafka
+    state: absent
+  ignore_errors: yes
+
 - name: rename tar file
-  shell: rm -rf /home/{{ USER }}/kafka && mv /home/{{ USER }}/kafka_2.11-2.1.1 /home/{{ USER }}/kafka
+  shell: mv /home/{{ USER }}/kafka_2.11-2.1.1 /home/{{ USER }}/kafka
 
 - name: copy zookeeper service file
   become: yes
@@ -47,4 +53,23 @@
     - zookeeper
     - kafka
 
+
+- name: Validating if zookeeper is up and listening on port 2181
+  wait_for:
+    #host: localhost
+    port: "{{ ZOOKEEPER_PORT }}"
+    delay: 10
+    timeout: 30
+    state: started
+    msg: "Zookeeper not seem to be running"
+
+
+- name: Validating if Kafka is up and listening on port 2181
+  wait_for:
+    #host: localhost
+    port: "{{ KAFKA_PORT }}"
+    delay: 10
+    timeout: 30
+    state: started
+    msg: "Zookeeper not seem to be running"
 
