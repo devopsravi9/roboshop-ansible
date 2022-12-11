@@ -6,6 +6,7 @@
   ansible.builtin.apt:
     name: default-jre
     state: present
+    update_cache: yes
 
 - name: Create an user
   become: yes
@@ -19,6 +20,7 @@
     dest: "{{ FILE_PATH }}"
     owner: "{{ USER }}"
     group: "{{ USER }}"
+    remote_src: yes
 
 - name: remove old content
   ansible.builtin.file:
