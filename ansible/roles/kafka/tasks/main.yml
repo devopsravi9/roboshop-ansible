@@ -12,7 +12,9 @@
     state: present
 
 - name: remove old content
+  become: yes
   ansible.builtin.file:
+
     path: /opt/kafka/
     state: absent
   ignore_errors: yes
