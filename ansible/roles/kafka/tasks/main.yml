@@ -1,24 +1,27 @@
 
 
-#- name: Install JRE after apt update
-#  become: yes
-#  ansible.builtin.apt:
-#    name: default-jre
-#    state: present
-#    update_cache: yes
+- name: Install JRE after apt update
+  become: yes
+  ansible.builtin.apt:
+    name: default-jre
+    state: present
+    update_cache: yes
 
-#- name: Create an user
-#  become: yes
-#  user:
-#    name: "{{ USER }}"
-#    state: present
+- name: Create an user
+  become: yes
+  user:
+    name: "{{ USER }}"
+    state: present
 
-#- name: copy file from local to remote
-#  synchronize:
-#    src: /tmp/kafka.tgz
-#    dest: /tmp
-#    mode: push
-#    #remote_src: yes
+- name: Create a Directory /opt/kafka
+  become: yes
+  file:
+     path: "{{ FILE_PATH }}"
+     state: directory
+     mode: 755
+     owner: "{{ USER }}"
+     group: "{{ USER }}"
+
     
 - name: Extract tar file
   become: yes
@@ -26,8 +29,9 @@
     src: /tmp/kafka.tgz
     #src: /home/{{ USER }}/kafka.tgz
     dest: "{{ FILE_PATH }}"
-    owner: "{{ USER }}"
-    group: "{{ USER }}"
+    mode: 755
+    #owner: "{{ USER }}"
+    #group: "{{ USER }}"
     #remote_src: yes
 
 - name: remove old content
@@ -44,6 +48,7 @@
   ansible.builtin.template:
     src: templates/{{ item }}.service
     dest: /etc/systemd/system/{{ item }}.service
+    mode: 755
   loop:
     - zookeeper
     - kafka
