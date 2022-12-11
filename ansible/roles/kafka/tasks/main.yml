@@ -19,11 +19,10 @@
     src: /tmp/kafka.tgz
     dest: /tmp
     mode: push
-    owner: "{{ USER }}"
-    group: "{{ USER }}"
     #remote_src: yes
 
 - name: Extract tar file
+  become: yes
   ansible.builtin.unarchive:
     src: /tmp/kafka.tgz
     #src: /home/{{ USER }}/kafka.tgz
