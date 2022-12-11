@@ -22,7 +22,7 @@
 
 - name: Extract tar file
   become: yes
-  become_user: "{{ USER }}"
+  #become_user: "{{ USER }}"
   ansible.builtin.unarchive:
     src: /home/raj/kafka.tgz
     dest: /opt/kafka
