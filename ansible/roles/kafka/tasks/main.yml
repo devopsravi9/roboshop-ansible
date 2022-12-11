@@ -36,8 +36,8 @@
 #  ignore_errors: yes
 
 - name: rename the file
-  become: yes
-  become_user: "{{ USER }}"
+#  become: yes
+#  become_user: "{{ USER }}"
   shell: mv /opt/kafka/kafka_*/* /opt/kafka/.
 
 - name: copy zookeeper service file
