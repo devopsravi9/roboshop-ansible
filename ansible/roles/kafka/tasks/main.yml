@@ -53,7 +53,7 @@
   ansible.builtin.template:
     src: templates/{{ item }}.service
     dest: /etc/systemd/system/{{ item }}.service
-    mode: 0755
+    mode: 0777
   loop:
     - zookeeper
     - kafka
