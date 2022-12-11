@@ -1,5 +1,3 @@
-
-
 - name: Install JRE after apt update
   become: yes
   ansible.builtin.apt:
