@@ -18,7 +18,7 @@
   synchronize:
     src: /tmp/kafka.tgz
     dest: /tmp
-    mode: push
+    mode: pull
     #remote_src: yes
 
 - name: Extract tar file
