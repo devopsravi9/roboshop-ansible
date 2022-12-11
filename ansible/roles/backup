@@ -11,41 +11,29 @@
     name: "{{ USER }}"
     state: present
 
-- name: create a repo /opt/kafka
-  become: yes
-  file:
-    path: /opt/kafka
-    state: directory
-    mode: 0755
-    owner: "{{ USER }}"
-    group: "{{ USER }}"
 
 - name: Extract tar file
   become: yes
-  become_true: "{{ USER }}"
   ansible.builtin.unarchive:
     src: /home/raj/kafka.tgz
-    dest: /opt/kafka
-    #owner: "{{ USER }}"
-    #group: "{{ USER }}"
+    dest: "{{ FILE_PATH }}"
+    owner: "{{ USER }}"
+    group: "{{ USER }}"
 
-#- name: remove old content
-#  ansible.builtin.file:
-#    path: /opt/kafka/
-#    state: absent
-#  ignore_errors: yes
+- name: remove old content
+  ansible.builtin.file:
+    path: "{{ FILE_PATH }}/kafka"
+    state: absent
+  ignore_errors: yes
 
 - name: rename the file
-  become: yes
-  become_true: "{{ USER }}"
-  shell: mv /opt/kafka/kafka_*/* /opt/kafka/.
+  shell: mv {{ FILE_PATH }}/kafka_2.11-2.1.1 {{ FILE_PATH }}/kafka
 
 - name: copy zookeeper service file
   become: yes
   ansible.builtin.template:
     src: templates/{{ item }}.service
     dest: /etc/systemd/system/{{ item }}.service
-    mode: 0755
   loop:
     - zookeeper
     - kafka
@@ -53,11 +41,11 @@
 - name: copy server.properties file
   ansible.builtin.template:
     src: templates/server.properties
-    dest: /opt/kafka/config/server.properties
+    dest: "{{ FILE_PATH }}/kafka/config/server.properties"
 
 - name: configuring zookeeper
   ansible.builtin.replace:
-    path: /opt/kafka/config/zookeeper.properties
+    path: "{{ FILE_PATH }}/kafka/config/zookeeper.properties"
     regexp: 'clientPort=2181'
     replace: "clientPort={{ ZOOKEEPER_PORT }}"
 
