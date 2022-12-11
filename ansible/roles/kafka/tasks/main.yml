@@ -16,7 +16,7 @@
 
 - name: copy file from local to remote
   fetch:
-    src: /home/{{ USER }}/kafka.tgz
+    src: /tmp/kafka.tgz
     dest: /tmp
     #remote_src: yes
 
