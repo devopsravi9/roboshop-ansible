@@ -3,7 +3,7 @@
 
 - name: Install JRE after apt update
   become: yes
-  become_user: {{ USER }}
+  become_user: "{{ USER }}"
   ansible.builtin.apt:
     name: default-jre
     state: present
