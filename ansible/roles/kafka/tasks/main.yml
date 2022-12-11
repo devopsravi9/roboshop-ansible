@@ -20,7 +20,7 @@
     dest: "{{ FILE_PATH }}"
     owner: "{{ USER }}"
     group: "{{ USER }}"
-    remote_src: yes
+  remote_src: yes
 
 - name: remove old content
   ansible.builtin.file:
