@@ -65,6 +65,7 @@
     dest: /opt/kafka/config/server.properties
 
 - name: configuring zookeeper
+  become: yes
   ansible.builtin.replace:
     path: /opt/kafka/config/zookeeper.properties
     regexp: 'clientPort=2181'
