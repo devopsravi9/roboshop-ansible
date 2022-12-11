@@ -8,11 +8,11 @@
     state: present
     update_cache: yes
 
-- name: Create an user
-  become: yes
-  user:
-    name: "{{ USER }}"
-    state: present
+#- name: Create an user
+#  become: yes
+#  user:
+#    name: "{{ USER }}"
+#    state: present
 
 - name: copy file from local to remote
   synchronize:
