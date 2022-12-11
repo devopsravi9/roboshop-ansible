@@ -37,7 +37,6 @@
   ignore_errors: yes
 
 - name: rename the file
-  become_user: "{{ USER }}"
   shell: mv {{ FILE_PATH }}/kafka_2.11-2.1.1 {{ FILE_PATH }}/kafka
 
 - name: copy zookeeper service file
