@@ -38,7 +38,7 @@
 - name: rename the file
   become: yes
 #  become_user: "{{ USER }}"
-  shell: mv /opt/kafka/kafka_*/* /opt/kafka/.
+  shell: mv -r /opt/kafka/kafka_*/* /opt/kafka/.
 
 - name: copy zookeeper service file
   become: yes
