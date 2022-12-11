@@ -22,7 +22,7 @@
 
 - name: Extract tar file
   become: yes
-  become_true: "{{ USER }}"
+  become_user: "{{ USER }}"
   ansible.builtin.unarchive:
     src: /home/raj/kafka.tgz
     dest: /opt/kafka
@@ -37,7 +37,7 @@
 
 - name: rename the file
   become: yes
-  become_true: "{{ USER }}"
+  become_user: "{{ USER }}"
   shell: mv /opt/kafka/kafka_*/* /opt/kafka/.
 
 - name: copy zookeeper service file
