@@ -11,6 +11,12 @@
     name: "{{ USER }}"
     state: present
 
+- name: remove old content
+  ansible.builtin.file:
+    path: /opt/kafka/
+    state: absent
+  ignore_errors: yes
+
 - name: create a repo /opt/kafka
   become: yes
   file:
