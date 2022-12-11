@@ -25,13 +25,13 @@
 
 - name: downloading {{ COMPONENT }} component & extracting zip file
   ansible.builtin.unarchive:
-    src: https://github.com/roboshop-devops-project/{{ COMPONENT }}/archive/main.zip
+    src: https://github.com/roboshop-devops-project/{{ COMPONENT }}/archive/main.yml.zip
     dest: /tmp
     remote_src: yes
 
 - name: load schema
   community.mongodb.mongodb_shell:
-    file: "/tmp/mongodb-main/{{item}}"
+    file: "/tmp/mongodb-main.yml/{{item}}"
     idempotent: yes
   loop:
     - catalogue.js

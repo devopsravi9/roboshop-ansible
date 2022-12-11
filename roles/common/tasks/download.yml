@@ -16,13 +16,13 @@
 
 # - name: download & unzip the {{ COMPONENT }} content
 #   ansible.builtin.unarchive:
-#     src: https://github.com/roboshop-devops-project/{{ COMPONENT }}/archive/main.zip
+#     src: https://github.com/roboshop-devops-project/{{ COMPONENT }}/archive/main.yml.zip
 #     dest: /tmp
 #     remote_src: yes
 #
 # - name: copy {{ COMPONENT }} code to app location
 #   ansible.builtin.copy:
-#     src: /tmp/{{COMPONENT}}-main/{{SUFFIX}}
+#     src: /tmp/{{COMPONENT}}-main.yml/{{SUFFIX}}
 #     dest: "{{ APP_LOCATION }}"
 #     remote_src: yes
 

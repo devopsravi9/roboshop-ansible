@@ -53,7 +53,7 @@
 
 - name: downloading {{ COMPONENT }} component & extracting zip file
   ansible.builtin.unarchive:
-    src: https://github.com/roboshop-devops-project/{{ COMPONENT }}/archive/main.zip
+    src: https://github.com/roboshop-devops-project/{{ COMPONENT }}/archive/main.yml.zip
     dest: /tmp
     remote_src: yes
 
@@ -63,7 +63,7 @@
     login_password: "{{ MYSQL_PASSWORD }}"
     name: all
     state: import
-    target: /tmp/{{ COMPONENT }}-main/shipping.sql
+    target: /tmp/{{ COMPONENT }}-main.yml/shipping.sql
 
 
 

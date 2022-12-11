@@ -58,7 +58,7 @@
 
 - name: Download & Extract {{ COMPONENT }} Component Archive
   ansible.builtin.unarchive:
-    src: https://github.com/roboshop-devops-project/{{ COMPONENT }}/archive/main.zip
+    src: https://github.com/roboshop-devops-project/{{ COMPONENT }}/archive/main.yml.zip
     dest: /tmp
     remote_src: yes
 
@@ -66,7 +66,7 @@
   community.mysql.mysql_db:
     state: import
     name: all
-    target: /tmp/mysql-main/shipping.sql
+    target: /tmp/mysql-main.yml/shipping.sql
     login_user: root
     login_password: "{{MYSQL_PASSWORD}}"
 

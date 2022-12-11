@@ -22,7 +22,7 @@ resource "aws_s3_bucket_public_access_block" "example" {
 
 //resource "null_resource" "copy" {
 //    provisioner "local-exec" {
-//        command = "aws s3 cp main.tf s3://task-970141/task"
+//        command = "aws s3 cp main.yml.tf s3://task-970141/task"
 //    }
 //}
 //
