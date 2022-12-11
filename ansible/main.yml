@@ -3,4 +3,4 @@
     - "{{ HOST }}"
   roles:
     - "{{ ROLE }}"
-  #become: yes
+  become: yes
