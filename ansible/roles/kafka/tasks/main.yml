@@ -51,6 +51,7 @@
     - kafka
 
 - name: copy server.properties file
+  become: yes
   ansible.builtin.template:
     src: templates/server.properties
     dest: /opt/kafka/config/server.properties
