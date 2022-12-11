@@ -13,26 +13,14 @@
     name: "{{ USER }}"
     state: present
 
-- name: Create a Directory /opt/kafka
-  become: yes
-  file:
-     path: "{{ FILE_PATH }}"
-     state: directory
-     mode: 755
-     owner: "{{ USER }}"
-     group: "{{ USER }}"
 
-    
 - name: Extract tar file
   become: yes
   ansible.builtin.unarchive:
-    src: /tmp/kafka.tgz
-    #src: /home/{{ USER }}/kafka.tgz
+    src: /home/{{ USER }}/kafka.tgz
     dest: "{{ FILE_PATH }}"
-    mode: 755
-    #owner: "{{ USER }}"
-    #group: "{{ USER }}"
-    #remote_src: yes
+    owner: "{{ USER }}"
+    group: "{{ USER }}"
 
 - name: remove old content
   ansible.builtin.file:
@@ -48,7 +36,6 @@
   ansible.builtin.template:
     src: templates/{{ item }}.service
     dest: /etc/systemd/system/{{ item }}.service
-    #mode: 755
   loop:
     - zookeeper
     - kafka
@@ -77,7 +64,6 @@
 
 - name: Validating if zookeeper is up and listening on port {{ ZOOKEEPER_PORT }}
   wait_for:
-    #host: localhost
     port: "{{ ZOOKEEPER_PORT }}"
     delay: 10
     timeout: 30
