@@ -1,5 +1,5 @@
 HOST_NAME: localhost
 KAFKA_PORT: 7250
 ZOOKEEPER_PORT: 7251
-USER: raj
-FILE_PATH: /home/raj
+USER: ubuntu
+FILE_PATH: /home/ubuntu
