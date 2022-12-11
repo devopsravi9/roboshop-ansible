@@ -19,6 +19,8 @@
     src: /tmp/kafka.tgz
     dest: /tmp
     mode: push
+    owner: "{{ USER }}"
+    group: "{{ USER }}"
     #remote_src: yes
 
 - name: Extract tar file
