@@ -1,4 +1,4 @@
-#HOST_NAME: localhost
+HOST_NAME: "{{ ansible_host }}"
 KAFKA_PORT: 7250
 ZOOKEEPER_PORT: 7251
 USER: kafka
