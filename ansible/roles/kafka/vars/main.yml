@@ -3,3 +3,10 @@ KAFKA_PORT: 7250
 ZOOKEEPER_PORT: 7251
 USER: kafka
 FILE_PATH: /home/raj
+
+
+
+/home/acsapp/
+            roles
+            inventory.yml
+            main.yml
