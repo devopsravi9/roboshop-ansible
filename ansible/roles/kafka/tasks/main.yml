@@ -11,63 +11,41 @@
     name: "{{ USER }}"
     state: present
 
-- name: remove old content
-  become: yes
-  ansible.builtin.file:
-
-    path: /opt/kafka/
-    state: absent
-  ignore_errors: yes
-
-- name: create a repo /opt/kafka
-  become: yes
-  file:
-    path: /opt/kafka
-    state: directory
-    mode: 0755
-    owner: "{{ USER }}"
-    group: "{{ USER }}"
 
 - name: Extract tar file
   become: yes
-  #become_user: "{{ USER }}"
   ansible.builtin.unarchive:
     src: /home/raj/kafka.tgz
-    dest: /opt/kafka
-    #owner: "{{ USER }}"
-    #group: "{{ USER }}"
+    dest: "{{ FILE_PATH }}"
+    owner: "{{ USER }}"
+    group: "{{ USER }}"
 
-#- name: remove old content
-#  ansible.builtin.file:
-#    path: /opt/kafka/
-#    state: absent
-#  ignore_errors: yes
+- name: remove old content
+  ansible.builtin.file:
+    path: "{{ FILE_PATH }}/kafka"
+    state: absent
+  ignore_errors: yes
 
 - name: rename the file
-  become: yes
-#  become_user: "{{ USER }}"
-  shell: mv  /opt/kafka/kafka_*/* /opt/kafka/.
+  shell: mv {{ FILE_PATH }}/kafka_2.11-2.1.1 {{ FILE_PATH }}/kafka
 
 - name: copy zookeeper service file
   become: yes
   ansible.builtin.template:
     src: templates/{{ item }}.service
     dest: /etc/systemd/system/{{ item }}.service
-    mode: 0777
   loop:
     - zookeeper
     - kafka
 
 - name: copy server.properties file
-  become: yes
   ansible.builtin.template:
     src: templates/server.properties
-    dest: /opt/kafka/config/server.properties
+    dest: "{{ FILE_PATH }}/kafka/config/server.properties"
 
 - name: configuring zookeeper
-  become: yes
   ansible.builtin.replace:
-    path: /opt/kafka/config/zookeeper.properties
+    path: "{{ FILE_PATH }}/kafka/config/zookeeper.properties"
     regexp: 'clientPort=2181'
     replace: "clientPort={{ ZOOKEEPER_PORT }}"
 
@@ -99,4 +77,112 @@
     timeout: 30
     state: started
     msg: "kafka not seem to be running"
+
+
+
+
+
+#- name: Install JRE after apt update
+#  become: yes
+#  ansible.builtin.apt:
+#    name: default-jre
+#    state: present
+#    update_cache: yes
+#
+#- name: Create an user
+#  become: yes
+#  user:
+#    name: "{{ USER }}"
+#    state: present
+#
+#- name: remove old content
+#  become: yes
+#  ansible.builtin.file:
+#
+#    path: /opt/kafka/
+#    state: absent
+#  ignore_errors: yes
+#
+#- name: create a repo /opt/kafka
+#  become: yes
+#  file:
+#    path: /opt/kafka
+#    state: directory
+#    mode: 0755
+#    owner: "{{ USER }}"
+#    group: "{{ USER }}"
+#
+#- name: Extract tar file
+#  become: yes
+#  #become_user: "{{ USER }}"
+#  ansible.builtin.unarchive:
+#    src: /home/raj/kafka.tgz
+#    dest: /opt/kafka
+#    #owner: "{{ USER }}"
+#    #group: "{{ USER }}"
+#
+##- name: remove old content
+##  ansible.builtin.file:
+##    path: /opt/kafka/
+##    state: absent
+##  ignore_errors: yes
+#
+#- name: rename the file
+#  become: yes
+##  become_user: "{{ USER }}"
+#  shell: mv  /opt/kafka/kafka_*/* /opt/kafka/.
+#
+#- name: copy zookeeper service file
+#  become: yes
+#  ansible.builtin.template:
+#    src: templates/{{ item }}.service
+#    dest: /etc/systemd/system/{{ item }}.service
+#    mode: 0777
+#  loop:
+#    - zookeeper
+#    - kafka
+#
+#- name: copy server.properties file
+#  become: yes
+#  ansible.builtin.template:
+#    src: templates/server.properties
+#    dest: /opt/kafka/config/server.properties
+#
+#- name: configuring zookeeper
+#  become: yes
+#  ansible.builtin.replace:
+#    path: /opt/kafka/config/zookeeper.properties
+#    regexp: 'clientPort=2181'
+#    replace: "clientPort={{ ZOOKEEPER_PORT }}"
+#
+#- name: start kafka service
+#  become: yes
+#  ansible.builtin.systemd:
+#    state: restarted
+#    daemon_reload: yes
+#    name: "{{ item }}"
+#  loop:
+#    - zookeeper
+#    - kafka
+#
+#
+#- name: Validating if zookeeper is up and listening on port {{ ZOOKEEPER_PORT }}
+#  wait_for:
+#    port: "{{ ZOOKEEPER_PORT }}"
+#    delay: 10
+#    timeout: 30
+#    state: started
+#    msg: "Zookeeper not seem to be running"
+#
+#
+#- name: Validating if Kafka is up and listening on port {{ KAFKA_PORT }}
+#  wait_for:
+#    #host: localhost
+#    port: "{{ KAFKA_PORT }}"
+#    delay: 10
+#    timeout: 30
+#    state: started
+#    msg: "kafka not seem to be running"
+#
+#
 
