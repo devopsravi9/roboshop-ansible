@@ -1,5 +1,5 @@
 - name: run ansible playbook
-  hosts:
+  #hosts:
     - "{{ HOST }}"
   roles:
     - "{{ ROLE }}"
