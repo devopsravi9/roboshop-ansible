@@ -1,4 +1,5 @@
 - name: run ansible playbook
   hosts: all
-  roles: kafka
+  roles:
+  - kafka
 
