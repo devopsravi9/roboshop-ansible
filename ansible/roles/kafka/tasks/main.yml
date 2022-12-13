@@ -5,7 +5,7 @@
   ansible.builtin.copy:
     src:  /home/raj/kafka.tgz
     dest: /home/raj/kafka.tgz
-    remote_src: yes
+  remote_src: yes
 
 
 
