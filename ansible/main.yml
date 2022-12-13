@@ -1,6 +1,5 @@
 - name: run ansible playbook
-  #hosts:
-    - "{{ HOST }}"
+  hosts: all
   roles:
     - "{{ ROLE }}"
   #become: yes
