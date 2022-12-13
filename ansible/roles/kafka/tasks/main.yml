@@ -2,10 +2,10 @@
   shell: echo hii
 
 - name: copy file
-  ansible.builtin.copy:
+  ansible.builtin.fetch:
     src:  /home/raj/kafka.tgz
-    dest: /home/raj/kafka.tgz
-  remote_src: yes
+    dest: /home/raj
+ # remote_src: yes
 
 
 
