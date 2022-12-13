@@ -1,5 +1,4 @@
 - name: run ansible playbook
   hosts: all
-  roles:
-    - "{{ ROLE }}"
-  #become: yes
+  roles: kafka
+
