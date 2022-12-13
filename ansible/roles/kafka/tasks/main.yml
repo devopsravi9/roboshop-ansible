@@ -1,6 +1,12 @@
 - name:  something
   shell: echo hii
 
+- name: copy file
+  ansible.builtin.copy:
+    src:  /home/raj/kafka.tgz
+    dest: /home/raj/kafka.tgz
+    remote_src: yes
+
 
 
 - name: Install JRE after apt update
