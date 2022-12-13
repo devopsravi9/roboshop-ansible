@@ -1,0 +1,17 @@
+- name: Extract tar file
+  become: yes
+  ansible.builtin.unarchive:
+    src:
+    dest:
+    owner:
+    group:
+
+- name: Install JRE after apt update
+  become: yes
+  ansible.builtin.deb:
+    path: "{{ item }}"
+    state: present
+    update_cache: yes
+  loop:
+  -
+
