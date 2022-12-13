@@ -1,5 +1,5 @@
 - name:  something
-  shell: sudo apt-get install default-jre
+  shell: echo hii
 
 
 
