@@ -87,23 +87,23 @@
     state: started
     msg: "Zookeeper not seem to be running"
 
-- name: start kafka service
-  become: yes
-  ansible.builtin.systemd:
-    state: restarted
-    daemon_reload: yes
-    name: "{{ item }}"
-  loop:
-    #- zookeeper
-    - kafka
+#- name: start kafka service
+#  become: yes
+#  ansible.builtin.systemd:
+#    state: restarted
+#    daemon_reload: yes
+#    name: "{{ item }}"
+#  loop:
+#    #- zookeeper
+#    - kafka
 
 
 - name: Validating if Kafka is up and listening on port {{ KAFKA_PORT }}
   wait_for:
     #host: localhost
     port: "{{ KAFKA_PORT }}"
-    delay: 10
-    timeout: 30
+    delay: 30
+    timeout: 60
     state: started
     msg: "kafka not seem to be running"
 
