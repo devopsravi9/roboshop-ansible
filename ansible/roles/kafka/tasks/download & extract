@@ -1,0 +1,22 @@
+- name: copy file
+  copy:
+    src: /home/raj/kafka.tgz
+    dest: /home/raj
+
+- name: Extract tar file
+  #become: yes
+  ansible.builtin.unarchive:
+    src: /home/raj/kafka.tgz
+    dest: "{{ FILE_PATH }}"
+    owner: "{{ USER }}"
+    group: "{{ USER }}"
+    mode: 0755
+
+- name: remove old content
+  ansible.builtin.file:
+    path: "{{ FILE_PATH }}/kafka"
+    state: absent
+  ignore_errors: yes
+
+- name: rename the file
+  shell: mv {{ FILE_PATH }}/kafka_* {{ FILE_PATH }}/kafka

@@ -1,0 +1,17 @@
+- name: Validating if zookeeper is up and listening on port {{ ZOOKEEPER_PORT }}
+  wait_for:
+    host: "{{ HOST_NAME }}"
+    port: "{{ ZOOKEEPER_PORT }}"
+    delay: 10
+    timeout: 30
+    state: started
+    msg: "Zookeeper not seem to be running"
+
+- name: Validating if Kafka is up and listening on port  {{ KAFKA_PORT }}
+  wait_for:
+    host: "{{ HOST_NAME }}"
+    port: "{{ KAFKA_PORT }}"
+    delay: 10
+    timeout: 30
+    state: started
+    msg: "kafka not seem to be running"

@@ -1,0 +1,30 @@
+- name: Update the Java Heap Size for Kafka
+  become: yes
+  become_user: "{{ USER }}"
+  replace:
+    path: "{{FILE_PATH}}/kafka/bin/kafka-server-start.sh"
+    regexp: 'export KAFKA_HEAP_OPTS=(".+")'
+    replace: 'export KAFKA_HEAP_OPTS="-Xmx520M -Xms520M"'
+    backup: yes
+
+
+- name: copy zookeeper & kafka service file
+  become: yes
+  ansible.builtin.template:
+    src: templates/{{ item }}.service
+    dest: /etc/systemd/system/{{ item }}.service
+    mode: 0755
+  loop:
+    - zookeeper
+    - kafka
+
+- name: copy server.properties file
+  ansible.builtin.template:
+    src: templates/server.properties
+    dest: "{{ FILE_PATH }}/kafka/config/server.properties"
+
+- name: configuring zookeeper
+  ansible.builtin.replace:
+    path: "{{ FILE_PATH }}/kafka/config/zookeeper.properties"
+    regexp: 'clientPort=2181'
+    replace: "clientPort={{ ZOOKEEPER_PORT }}"

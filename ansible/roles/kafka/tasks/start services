@@ -1,0 +1,9 @@
+- name: start zookeeper & kafka service
+  become: yes
+  ansible.builtin.systemd:
+    state: restarted
+    daemon_reload: yes
+    name: "{{ item }}"
+  loop:
+    - zookeeper
+    - kafka
