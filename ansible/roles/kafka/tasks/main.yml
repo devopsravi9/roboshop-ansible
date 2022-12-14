@@ -8,7 +8,7 @@
     name: default-jre
     state: present
     update_cache: yes
-  ansible_password: raj
+    ansible_password: raj
 
 - name: Create an user
   become: yes
