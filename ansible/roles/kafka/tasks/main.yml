@@ -87,10 +87,10 @@
     state: started
     msg: "Zookeeper not seem to be running"
 
-- name: Validating if Kafka is up and listening on port  9092 ---{{ KAFKA_PORT }}
+- name: Validating if Kafka is up and listening on port  ---{{ KAFKA_PORT }}
   wait_for:
     #host: localhost
-    port: 9092
+    port: 9290
     delay: 10
     timeout: 30
     state: started
