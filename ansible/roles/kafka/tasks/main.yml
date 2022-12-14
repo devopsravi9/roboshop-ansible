@@ -1,23 +1,23 @@
-- name:  something
-  shell: echo hii
-
-- name: Install JRE after apt update
-  become: yes
-  ansible.builtin.apt:
-    name: default-jre
-    state: present
-    update_cache: yes
-
-- name: Create an user
-  become: yes
-  user:
-    name: "{{ USER }}"
-    state: present
-
-- name: copy file
-  copy:
-    src: /home/raj/kafka.tgz
-    dest: /home/raj
+#- name:  something
+#  shell: echo hii
+#
+#- name: Install JRE after apt update
+#  become: yes
+#  ansible.builtin.apt:
+#    name: default-jre
+#    state: present
+#    update_cache: yes
+#
+#- name: Create an user
+#  become: yes
+#  user:
+#    name: "{{ USER }}"
+#    state: present
+#
+#- name: copy file
+#  copy:
+#    src: /home/raj/kafka.tgz
+#    dest: /home/raj
 
 - name: Extract tar file
   #become: yes
@@ -57,16 +57,16 @@
     - zookeeper
     - kafka
 
-- name: copy server.properties file
-  ansible.builtin.template:
-    src: templates/server.properties
-    dest: "{{ FILE_PATH }}/kafka/config/server.properties"
-
-- name: configuring zookeeper
-  ansible.builtin.replace:
-    path: "{{ FILE_PATH }}/kafka/config/zookeeper.properties"
-    regexp: 'clientPort=2181'
-    replace: "clientPort={{ ZOOKEEPER_PORT }}"
+#- name: copy server.properties file
+#  ansible.builtin.template:
+#    src: templates/server.properties
+#    dest: "{{ FILE_PATH }}/kafka/config/server.properties"
+#
+#- name: configuring zookeeper
+#  ansible.builtin.replace:
+#    path: "{{ FILE_PATH }}/kafka/config/zookeeper.properties"
+#    regexp: 'clientPort=2181'
+#    replace: "clientPort={{ ZOOKEEPER_PORT }}"
 
 - name: start zookeeper service
   become: yes
@@ -79,22 +79,22 @@
     - kafka
 
 
-- name: Validating if zookeeper is up and listening on port {{ ZOOKEEPER_PORT }}
-  wait_for:
-    port: "{{ ZOOKEEPER_PORT }}"
-    delay: 10
-    timeout: 30
-    state: started
-    msg: "Zookeeper not seem to be running"
-
-- name: Validating if Kafka is up and listening on port {{ KAFKA_PORT }}
-  wait_for:
-    #host: localhost
-    port: "{{ KAFKA_PORT }}"
-    delay: 10
-    timeout: 30
-    state: started
-    msg: "kafka not seem to be running"
+#- name: Validating if zookeeper is up and listening on port {{ ZOOKEEPER_PORT }}
+#  wait_for:
+#    port: "{{ ZOOKEEPER_PORT }}"
+#    delay: 10
+#    timeout: 30
+#    state: started
+#    msg: "Zookeeper not seem to be running"
+#
+#- name: Validating if Kafka is up and listening on port {{ KAFKA_PORT }}
+#  wait_for:
+#    #host: localhost
+#    port: "{{ KAFKA_PORT }}"
+#    delay: 10
+#    timeout: 30
+#    state: started
+#    msg: "kafka not seem to be running"
 
 
 
