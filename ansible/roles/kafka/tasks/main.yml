@@ -89,7 +89,7 @@
 #
 - name: Validating if Kafka is up and listening on port  ---{{ KAFKA_PORT }}
   wait_for:
-    #host: localhost
+    host: "{{ ansible_host }}"
     port: 9290
     delay: 10
     timeout: 30
