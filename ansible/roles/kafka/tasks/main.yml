@@ -1,15 +1,12 @@
 - name:  something
   shell: echo hii
 
-
-
 - name: Install JRE after apt update
   become: yes
   ansible.builtin.apt:
     name: default-jre
     state: present
     update_cache: yes
-
 
 - name: Create an user
   become: yes
@@ -23,12 +20,13 @@
     dest: /home/raj
 
 - name: Extract tar file
-  become: yes
+  #become: yes
   ansible.builtin.unarchive:
     src: /home/raj/kafka.tgz
     dest: "{{ FILE_PATH }}"
     owner: "{{ USER }}"
     group: "{{ USER }}"
+    mode: 0755
 
 - name: remove old content
   ansible.builtin.file:
@@ -38,6 +36,16 @@
 
 - name: rename the file
   shell: mv {{ FILE_PATH }}/kafka_* {{ FILE_PATH }}/kafka
+
+- name: Update the Java Heap Size for Kafka
+    become: yes
+    become_user: "{{ USER }}"
+    replace:
+      path: "{{FILE_PATH}}/kafka/bin/kafka-server-start.sh"
+      regexp: 'export KAFKA_HEAP_OPTS=(".+")'
+      replace: 'export KAFKA_HEAP_OPTS="-Xmx520M -Xms520M"'
+      backup: yes
+
 
 - name: copy zookeeper service file
   become: yes
@@ -60,15 +68,15 @@
     regexp: 'clientPort=2181'
     replace: "clientPort={{ ZOOKEEPER_PORT }}"
 
-- name: start zookeeper service
-  become: yes
-  ansible.builtin.systemd:
-    state: restarted
-    daemon_reload: yes
-    name: "{{ item }}"
-  loop:
-    - zookeeper
-    #- kafka
+#- name: start zookeeper service
+#  become: yes
+#  ansible.builtin.systemd:
+#    state: restarted
+#    daemon_reload: yes
+#    name: "{{ item }}"
+#  loop:
+#    - zookeeper
+#    #- kafka
 
 
 - name: Validating if zookeeper is up and listening on port {{ ZOOKEEPER_PORT }}
@@ -101,109 +109,4 @@
 
 
 
-
-
-#- name: Install JRE after apt update
-#  become: yes
-#  ansible.builtin.apt:
-#    name: default-jre
-#    state: present
-#    update_cache: yes
-#
-#- name: Create an user
-#  become: yes
-#  user:
-#    name: "{{ USER }}"
-#    state: present
-#
-#- name: remove old content
-#  become: yes
-#  ansible.builtin.file:
-#
-#    path: /opt/kafka/
-#    state: absent
-#  ignore_errors: yes
-#
-#- name: create a repo /opt/kafka
-#  become: yes
-#  file:
-#    path: /opt/kafka
-#    state: directory
-#    mode: 0755
-#    owner: "{{ USER }}"
-#    group: "{{ USER }}"
-#
-#- name: Extract tar file
-#  become: yes
-#  #become_user: "{{ USER }}"
-#  ansible.builtin.unarchive:
-#    src: /home/raj/kafka.tgz
-#    dest: /opt/kafka
-#    #owner: "{{ USER }}"
-#    #group: "{{ USER }}"
-#
-##- name: remove old content
-##  ansible.builtin.file:
-##    path: /opt/kafka/
-##    state: absent
-##  ignore_errors: yes
-#
-#- name: rename the file
-#  become: yes
-##  become_user: "{{ USER }}"
-#  shell: mv  /opt/kafka/kafka_*/* /opt/kafka/.
-#
-#- name: copy zookeeper service file
-#  become: yes
-#  ansible.builtin.template:
-#    src: templates/{{ item }}.service
-#    dest: /etc/systemd/system/{{ item }}.service
-#    mode: 0777
-#  loop:
-#    - zookeeper
-#    - kafka
-#
-#- name: copy server.properties file
-#  become: yes
-#  ansible.builtin.template:
-#    src: templates/server.properties
-#    dest: /opt/kafka/config/server.properties
-#
-#- name: configuring zookeeper
-#  become: yes
-#  ansible.builtin.replace:
-#    path: /opt/kafka/config/zookeeper.properties
-#    regexp: 'clientPort=2181'
-#    replace: "clientPort={{ ZOOKEEPER_PORT }}"
-#
-#- name: start kafka service
-#  become: yes
-#  ansible.builtin.systemd:
-#    state: restarted
-#    daemon_reload: yes
-#    name: "{{ item }}"
-#  loop:
-#    - zookeeper
-#    - kafka
-#
-#
-#- name: Validating if zookeeper is up and listening on port {{ ZOOKEEPER_PORT }}
-#  wait_for:
-#    port: "{{ ZOOKEEPER_PORT }}"
-#    delay: 10
-#    timeout: 30
-#    state: started
-#    msg: "Zookeeper not seem to be running"
-#
-#
-#- name: Validating if Kafka is up and listening on port {{ KAFKA_PORT }}
-#  wait_for:
-#    #host: localhost
-#    port: "{{ KAFKA_PORT }}"
-#    delay: 10
-#    timeout: 30
-#    state: started
-#    msg: "kafka not seem to be running"
-#
-#
 
