@@ -1,10 +1,6 @@
 - name:  something
   shell: echo hii
 
-- name: copy file
-  copy:
-    src: /home/raj/kafka.tgz
-    dest: /home/raj
 
 
 - name: Install JRE after apt update
@@ -21,6 +17,10 @@
     name: "{{ USER }}"
     state: present
 
+- name: copy file
+  copy:
+    src: /home/raj/kafka.tgz
+    dest: /home/raj
 
 - name: Extract tar file
   become: yes
@@ -37,7 +37,7 @@
   ignore_errors: yes
 
 - name: rename the file
-  shell: mv {{ FILE_PATH }}/kafka_2.11-2.1.1 {{ FILE_PATH }}/kafka
+  shell: mv {{ FILE_PATH }}/kafka_* {{ FILE_PATH }}/kafka
 
 - name: copy zookeeper service file
   become: yes
