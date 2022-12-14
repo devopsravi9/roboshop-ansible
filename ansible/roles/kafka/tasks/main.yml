@@ -38,13 +38,13 @@
   shell: mv {{ FILE_PATH }}/kafka_* {{ FILE_PATH }}/kafka
 
 - name: Update the Java Heap Size for Kafka
-    become: yes
-    become_user: "{{ USER }}"
-    replace:
-      path: "{{FILE_PATH}}/kafka/bin/kafka-server-start.sh"
-      regexp: 'export KAFKA_HEAP_OPTS=(".+")'
-      replace: 'export KAFKA_HEAP_OPTS="-Xmx520M -Xms520M"'
-      backup: yes
+  become: yes
+  become_user: "{{ USER }}"
+  replace:
+    path: "{{FILE_PATH}}/kafka/bin/kafka-server-start.sh"
+    regexp: 'export KAFKA_HEAP_OPTS=(".+")'
+    replace: 'export KAFKA_HEAP_OPTS="-Xmx520M -Xms520M"'
+    backup: yes
 
 
 - name: copy zookeeper service file
