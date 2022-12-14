@@ -1,12 +1,4 @@
-- name:  something
-  shell: echo hii
-
-- name: Install JRE after apt update
-  become: yes
-  ansible.builtin.apt:
-    name: default-jre
-    state: present
-    update_cache: yes
+- include_tasks: java install
 
 - name: Create an user
   become: yes
@@ -47,7 +39,7 @@
     backup: yes
 
 
-- name: copy zookeeper service file
+- name: copy zookeeper & kafka service file
   become: yes
   ansible.builtin.template:
     src: templates/{{ item }}.service
@@ -68,7 +60,7 @@
     regexp: 'clientPort=2181'
     replace: "clientPort={{ ZOOKEEPER_PORT }}"
 
-- name: start zookeeper service
+- name: start zookeeper & kafka service
   become: yes
   ansible.builtin.systemd:
     state: restarted
