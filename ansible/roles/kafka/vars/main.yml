@@ -1,7 +1,7 @@
 HOST_NAME: "{{ ansible_host }}"
 KAFKA_PORT: 9290
 ZOOKEEPER_PORT: 7251
-USER: raj
+USER: "{{ ansible_user_id }}"
 FILE_PATH: /home/raj
 
 
