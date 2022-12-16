@@ -6,7 +6,7 @@
     owner:
     group:
 
-- name: Install JRE after apt update
+- name: Install reddis
   become: yes
   ansible.builtin.deb:
     path: "{{ item }}"
