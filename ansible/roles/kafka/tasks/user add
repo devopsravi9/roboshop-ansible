@@ -1,0 +1,3 @@
+- name: add user
+  debug:
+    msg: "{{ ANSIBLE_USER }}"
