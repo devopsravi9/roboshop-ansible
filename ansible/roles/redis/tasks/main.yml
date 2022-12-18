@@ -1,4 +1,4 @@
-- name: set hostname
+ - name: set hostname
   ansible.builtin.shell: set-hostname {{ COMPONENT }}
 
 - name: template a repo file

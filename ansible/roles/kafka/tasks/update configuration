@@ -28,3 +28,4 @@
     path: "{{ FILE_PATH }}/kafka/config/zookeeper.properties"
     regexp: 'clientPort=2181'
     replace: "clientPort={{ ZOOKEEPER_PORT }}"
+
