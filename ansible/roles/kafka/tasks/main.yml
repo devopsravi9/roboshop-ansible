@@ -1,7 +1,7 @@
-#- include_tasks: java_install
-#- include_tasks: download & extract
-#- include_tasks: update configuration
-#- include_tasks: start services
-#- include_tasks: check port opens
+- include_tasks: java_install
+- include_tasks: download & extract
+- include_tasks: update configuration
+- include_tasks: start services
+- include_tasks: check port opens
 
-- include_tasks: robo.yml
+#- include_tasks: robo.yml
