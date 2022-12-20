@@ -6,6 +6,14 @@
 - debug: "{{ ansible_user_id }}"
 
 - name: Touch a file, using symbolic modes to set the permissions (equivalent to 0644)
+  become: yes
   ansible.builtin.file:
     path: /etc/foo.conf
+    state: touch
+
+
+- name: Touch a file, using symbolic modes to set the permissions (equivalent to 0644)
+  #become: yes
+  ansible.builtin.file:
+    path: /home/raj/foo
     state: touch
