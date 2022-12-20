@@ -13,7 +13,7 @@
 
 
 - name: Touch a file, using symbolic modes to set the permissions (equivalent to 0644)
-  #become: yes
+  become: yes
   ansible.builtin.file:
     path: /home/raj/foo
     state: touch
