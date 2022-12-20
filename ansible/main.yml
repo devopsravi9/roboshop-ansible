@@ -1,8 +1,8 @@
 - name: run ansible playbook
   hosts: kafka
-  vars:
-    ansible_user: raj
-    ansible_password: raj
+#  vars:
+#    ansible_user: raj
+#    ansible_password: raj
   roles:
   - kafka
 
