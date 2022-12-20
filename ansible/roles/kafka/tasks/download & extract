@@ -4,7 +4,7 @@
     dest: /home/raj
 
 - name: Extract tar file
-  #become: yes
+  become: yes
   ansible.builtin.unarchive:
     src: /home/raj/kafka.tgz
     dest: "{{ FILE_PATH }}"
