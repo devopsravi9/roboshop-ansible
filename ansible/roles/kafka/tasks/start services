@@ -1,5 +1,5 @@
 - name: start zookeeper & kafka service
-  #become: yes
+  become: yes
   ansible.builtin.systemd:
     state: restarted
     daemon_reload: yes
