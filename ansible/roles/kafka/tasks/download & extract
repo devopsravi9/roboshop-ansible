@@ -18,5 +18,10 @@
     state: absent
   ignore_errors: yes
 
+- name: remove old content
+  ansible.builtin.file:
+    path: "{{ FILE_PATH }}/kafka"
+    state: present
+
 - name: rename the file
   shell: mv {{ FILE_PATH }}/kafka_2.11-2.1.1/* {{ FILE_PATH }}/kafka
