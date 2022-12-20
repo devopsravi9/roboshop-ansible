@@ -5,8 +5,7 @@
 
 - debug: "{{ ansible_user_id }}"
 
-- name: run systemd
-  become: yes
-  become_user: raj
-  systemd:
-    daemon_reload: yes
+- name: Touch a file, using symbolic modes to set the permissions (equivalent to 0644)
+  ansible.builtin.file:
+    path: /etc/foo.conf
+    state: touch
