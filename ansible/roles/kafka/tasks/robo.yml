@@ -4,3 +4,8 @@
     daemon_reload: yes
 
 - debug: "{{ ansible_user_id }}"
+
+- name: run systemd
+  become: yes
+  systemd:
+    daemon_reload: yes
