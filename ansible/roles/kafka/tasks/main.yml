@@ -4,4 +4,4 @@
 #- include_tasks: start services
 #- include_tasks: check port opens
 
-- include_tasks:
+- include_tasks: robo.yml
