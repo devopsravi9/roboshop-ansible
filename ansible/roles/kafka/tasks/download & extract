@@ -18,7 +18,9 @@
     state: absent
   ignore_errors: yes
 
-- name: remove old content
+- name: create file
+  become: yes
+  become_user: raj
   ansible.builtin.file:
     path: "{{ FILE_PATH }}/kafka"
     state: directory
